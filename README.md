@@ -25,9 +25,15 @@ By uniting **Conversational AI**, **Computer Vision**, and **Real-Time Geospatia
 ### 🎥 Video Demonstration
 > Watch the complete platform walkthrough (Mobile App, AI verification flow, Technician & Metabase dashboards):
 
-https://github.com/user-attachments/assets/demo-video-placeholder *(You can view or download `PROJET STAGE for linkedin/welcome-to-sonede-smart_qZ8VKJYG.mp4` directly)*
+👉 **[▶️ Click here to watch the full video on GitHub](https://github.com/amalmch/projet_stage_MajestEYE/blob/main/PROJET%20STAGE%20for%20linkedin/welcome-to-sonede-smart_qZ8VKJYG.mp4)**
 
-[![Watch the Demo](PROJET%20STAGE%20for%20linkedin/dashboard_admin.png)](PROJET%20STAGE%20for%20linkedin/welcome-to-sonede-smart_qZ8VKJYG.mp4)
+<p align="center">
+  <a href="https://github.com/amalmch/projet_stage_MajestEYE/blob/main/PROJET%20STAGE%20for%20linkedin/welcome-to-sonede-smart_qZ8VKJYG.mp4">
+    <img src="PROJET%20STAGE%20for%20linkedin/dashboard_admin.png" alt="Watch the Demo Video" width="800"/>
+  </a>
+  <br>
+  <em>(Click the image above or the link to play the demo video directly in GitHub's video player)</em>
+</p>
 
 ---
 
