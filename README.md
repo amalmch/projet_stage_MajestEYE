@@ -20,18 +20,6 @@ By uniting **Conversational AI**, **Computer Vision**, and **Real-Time Geospatia
 
 ---
 
-## 📸 Application Interface Showcase
-
-| 📱 Mobile Chatbot Interface | 🎙️ Interactive Voice Assistant | 📍 Real-time Incident Tracking |
-|:---:|:---:|:---:|
-| <img src="PROJET%20STAGE%20for%20linkedin/capture_mobile_chat.png" width="260"/> | <img src="PROJET%20STAGE%20for%20linkedin/capture_mobile_vocal.png" width="260"/> | <img src="PROJET%20STAGE%20for%20linkedin/capture_tracking.png" width="260"/> |
-
-| 📊 Metabase Executive Analytics Dashboard | 🛠️ Field Technician Intervention Portal |
-|:---:|:---:|
-| <img src="PROJET%20STAGE%20for%20linkedin/dashboard_admin.png" width="450"/> | <img src="PROJET%20STAGE%20for%20linkedin/dashboard_technicien.png" width="450"/> |
-
----
-
 ## 🌟 Key Features
 
 ### 1. 📱 Citizen Mobile Application (Flutter)
