@@ -20,30 +20,13 @@ By uniting **Conversational AI**, **Computer Vision**, and **Real-Time Geospatia
 
 ---
 
-## 🎬 Demo Video & Visual Showcase
-
-### 🎥 Video Demonstration
-> Watch the complete platform walkthrough (Mobile App, AI verification flow, Technician & Metabase dashboards):
-
-👉 **[▶️ Click here to watch the full video on GitHub](https://github.com/amalmch/projet_stage_MajestEYE/blob/main/PROJET%20STAGE%20for%20linkedin/welcome-to-sonede-smart_qZ8VKJYG.mp4)**
-
-<p align="center">
-  <a href="https://github.com/amalmch/projet_stage_MajestEYE/blob/main/PROJET%20STAGE%20for%20linkedin/welcome-to-sonede-smart_qZ8VKJYG.mp4">
-    <img src="PROJET%20STAGE%20for%20linkedin/dashboard_admin.png" alt="Watch the Demo Video" width="800"/>
-  </a>
-  <br>
-  <em>(Click the image above or the link to play the demo video directly in GitHub's video player)</em>
-</p>
-
----
-
-### 📸 Application Interface Gallery
+## 📸 Application Interface Showcase
 
 | 📱 Mobile Chatbot Interface | 🎙️ Interactive Voice Assistant | 📍 Real-time Incident Tracking |
 |:---:|:---:|:---:|
 | <img src="PROJET%20STAGE%20for%20linkedin/capture_mobile_chat.png" width="260"/> | <img src="PROJET%20STAGE%20for%20linkedin/capture_mobile_vocal.png" width="260"/> | <img src="PROJET%20STAGE%20for%20linkedin/capture_tracking.png" width="260"/> |
 
-| 📊 Metabase Executive Dashboard | 🛠️ Field Technician Intervention Portal |
+| 📊 Metabase Executive Analytics Dashboard | 🛠️ Field Technician Intervention Portal |
 |:---:|:---:|
 | <img src="PROJET%20STAGE%20for%20linkedin/dashboard_admin.png" width="450"/> | <img src="PROJET%20STAGE%20for%20linkedin/dashboard_technicien.png" width="450"/> |
 
