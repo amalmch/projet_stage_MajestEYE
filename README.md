@@ -157,5 +157,3 @@ Special thanks to:
 
 ---
 
-## 📄 License
-This project is developed for academic and demonstration purposes under the MIT License.
