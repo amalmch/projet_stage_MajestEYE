@@ -1,0 +1,75 @@
+{
+  "total_reclamations": [
+    { "$match": {} },
+    { "$count": "total" }
+  ],
+  "pct_critiques": [
+    {
+      "$group": {
+        "_id": null,
+        "total": { "$sum": 1 },
+        "critiques": {
+          "$sum": {
+            "$cond": [{ "$in": ["$urgence", ["critique", "haute"]] }, 1, 0]
+          }
+        }
+      }
+    },
+    {
+      "$project": {
+        "pct_critiques": {
+          "$multiply": [
+            { "$divide": ["$critiques", "$total"] },
+            100
+          ]
+        }
+      }
+    }
+  ],
+  "zones_touchees": [
+    {
+      "$group": {
+        "_id": "$gouvernorat"
+      }
+    },
+    {
+      "$count": "nb_gouvernorats"
+    }
+  ],
+  "temps_resolution_moyen": [
+    {
+      "$match": {
+        "temps_resolution_jours": { "$ne": null, "$exists": true }
+      }
+    },
+    {
+      "$group": {
+        "_id": null,
+        "avg_jours": { "$avg": "$temps_resolution_jours" }
+      }
+    }
+  ],
+  "taux_resolution": [
+    {
+      "$group": {
+        "_id": null,
+        "total": { "$sum": 1 },
+        "resolus": {
+          "$sum": {
+            "$cond": [{ "$eq": ["$statut", "resolu"] }, 1, 0]
+          }
+        }
+      }
+    },
+    {
+      "$project": {
+        "taux_resolution_pct": {
+          "$multiply": [
+            { "$divide": ["$resolus", "$total"] },
+            100
+          ]
+        }
+      }
+    }
+  ]
+}

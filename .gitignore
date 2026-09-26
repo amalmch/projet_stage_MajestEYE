@@ -1,0 +1,35 @@
+# Python & Virtual Environments
+venv/
+sonede_ai/venv/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.env
+sonede_ai/.env
+
+# Large Speech Models (Vosk Tunisian model > 1GB)
+sonede_ai/model/vosk-tn/
+
+# Flutter & Dart build artifacts
+Mobile_app/flutter_application_1/build/
+Mobile_app/flutter_application_1/.dart_tool/
+Mobile_app/flutter_application_1/.flutter-plugins
+Mobile_app/flutter_application_1/.flutter-plugins-dependencies
+Mobile_app/flutter_application_1/.packages
+Mobile_app/flutter_application_1/.pub/
+Mobile_app/flutter_application_1/.pub-cache/
+
+# Spring Boot & Maven artifacts
+demo/target/
+demo/.mvn/wrapper/maven-wrapper.jar
+target/
+*.class
+
+# IDE & OS files
+.idea/
+.vscode/
+*.iml
+*.log
+.DS_Store
+Thumbs.db

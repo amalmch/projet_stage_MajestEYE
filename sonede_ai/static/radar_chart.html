@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>SONEDE - Radar des Problèmes par Mois</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #0f172a; padding: 15px; margin: 0; text-align: center; color: #e2e8f0; overflow: hidden; }
+    .container { max-width: 580px; margin: 0 auto; }
+    h2 { color: #f8fafc; font-size: 16px; margin-bottom: 10px; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>🕸️ Distribution Mensuelle des Types de Réclamations</h2>
+    <div style="position: relative; height: 350px; width: 100%;">
+      <canvas id="radarChart"></canvas>
+    </div>
+  </div>
+
+  <script>
+    const months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+    
+    const categoryLabels = {
+      'qualite_eau': "Qualité de l'eau (goût/couleur)",
+      'fuite_visible': "Fuite visible / Travaux",
+      'coupure_non_signalee': "Coupure d'eau non signalée",
+      'pression_faible': "Pression insuffisante"
+    };
+
+    const categoryColors = {
+      'qualite_eau': { border: '#eab308', bg: 'rgba(234, 179, 8, 0.15)' },
+      'fuite_visible': { border: '#3b82f6', bg: 'rgba(59, 130, 246, 0.15)' },
+      'coupure_non_signalee': { border: '#ef4444', bg: 'rgba(239, 68, 68, 0.15)' },
+      'pression_faible': { border: '#a855f7', bg: 'rgba(168, 85, 247, 0.15)' }
+    };
+
+    // Default fallback mock data
+    const defaultData = {
+      labels: months,
+      datasets: [
+        {
+          label: "Coupure d'eau non signalée",
+          data: [12, 10, 15, 20, 35, 68, 95, 88, 45, 22, 14, 10],
+          borderColor: '#ef4444',
+          backgroundColor: 'rgba(239, 68, 68, 0.15)',
+          pointBackgroundColor: '#ef4444'
+        },
+        {
+          label: "Fuite visible / Travaux",
+          data: [25, 30, 28, 22, 18, 15, 20, 22, 35, 42, 48, 52],
+          borderColor: '#3b82f6',
+          backgroundColor: 'rgba(59, 130, 246, 0.15)',
+          pointBackgroundColor: '#3b82f6'
+        },
+        {
+          label: "Qualité de l'eau (goût/couleur)",
+          data: [15, 14, 18, 25, 30, 42, 55, 60, 40, 20, 16, 12],
+          borderColor: '#eab308',
+          backgroundColor: 'rgba(234, 179, 8, 0.15)',
+          pointBackgroundColor: '#eab308'
+        },
+        {
+          label: "Pression insuffisante",
+          data: [10, 12, 16, 22, 40, 75, 85, 80, 50, 25, 15, 10],
+          borderColor: '#a855f7',
+          backgroundColor: 'rgba(168, 85, 247, 0.15)',
+          pointBackgroundColor: '#a855f7'
+        }
+      ]
+    };
+
+    let chartInstance = null;
+
+    function renderRadar(chartData) {
+      if (chartInstance) {
+        chartInstance.destroy();
+      }
+      const ctx = document.getElementById('radarChart').getContext('2d');
+      
+      // Global ChartJS Dark Mode defaults
+      Chart.defaults.color = '#94a3b8'; // Label colors
+      Chart.defaults.borderColor = 'rgba(255, 255, 255, 0.1)';
+
+      chartInstance = new Chart(ctx, {
+        type: 'radar',
+        data: chartData,
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { 
+              position: 'bottom',
+              labels: {
+                color: '#e2e8f0',
+                font: { size: 11 }
+              }
+            }
+          },
+          scales: {
+            r: {
+              angleLines: { color: 'rgba(255, 255, 255, 0.08)' },
+              grid: { color: 'rgba(255, 255, 255, 0.08)' },
+              pointLabels: { 
+                font: { size: 10, weight: 'bold' },
+                color: '#94a3b8'
+              },
+              ticks: { 
+                beginAtZero: true,
+                color: '#64748b',
+                backdropColor: 'transparent'
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // Get URL parameters (from Metabase filters)
+    const urlParams = new URLSearchParams(window.location.search);
+    let fetchUrl = '/complaints?limit=1000';
+    
+    // Pass any relevant filters to the API call
+    ['categorie', 'gouvernorat', 'urgence', 'statut'].forEach(param => {
+      if (urlParams.has(param)) {
+        const val = urlParams.get(param);
+        if (val && !val.includes('{{')) {
+          fetchUrl += `&${param}=${encodeURIComponent(val)}`;
+        }
+      }
+    });
+
+    // Fetch live MongoDB data from Flask
+    fetch(fetchUrl)
+      .then(response => response.json())
+      .then(data => {
+        const complaints = data.results || [];
+        
+        const categories = ['qualite_eau', 'fuite_visible', 'coupure_non_signalee', 'pression_faible'];
+        const counts = {};
+        categories.forEach(cat => {
+          counts[cat] = Array(12).fill(0);
+        });
+
+        complaints.forEach(c => {
+          if (!c.date_signalement) return;
+          const gov = c.gouvernorat;
+          // Filter out unassigned governorate rows
+          if (!gov || gov === "Autre" || gov === "autre" || gov.trim() === "") return;
+          
+          const date = new Date(c.date_signalement);
+          if (!isNaN(date.getTime())) {
+            const monthIndex = date.getMonth();
+            const cat = c.categorie;
+            if (counts[cat]) {
+              counts[cat][monthIndex] += 1;
+            }
+          }
+        });
+
+        const datasets = categories.map(cat => {
+          const label = categoryLabels[cat] || cat;
+          const colors = categoryColors[cat] || { border: '#64748b', bg: 'rgba(100, 116, 139, 0.15)' };
+          return {
+            label: label,
+            data: counts[cat],
+            borderColor: colors.border,
+            backgroundColor: colors.bg,
+            pointBackgroundColor: colors.border
+          };
+        });
+
+        const totalCounts = datasets.reduce((sum, ds) => sum + ds.data.reduce((a,b)=>a+b, 0), 0);
+        if (totalCounts === 0) {
+          renderRadar(defaultData);
+        } else {
+          renderRadar({ labels: months, datasets: datasets });
+        }
+      })
+      .catch(err => {
+        console.error("Erreur lors de la récupération des données live radar:", err);
+        renderRadar(defaultData);
+      });
+  </script>
+</body>
+</html>

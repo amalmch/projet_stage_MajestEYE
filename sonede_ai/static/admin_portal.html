@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SONEDE Smart — Administration Générale</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #070d17;
+      --sidebar-bg: #0b1322;
+      --sidebar-border: #1e293b;
+      --topbar-bg: #0b1322;
+      --topbar-border: #1e293b;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --menu-hover: rgba(30, 41, 59, 0.6);
+      --primary: #0284c7;
+      --primary-glow: rgba(2, 132, 199, 0.35);
+    }
+    [data-theme="light"] {
+      --bg: #f1f5f9;
+      --sidebar-bg: #ffffff;
+      --sidebar-border: #e2e8f0;
+      --topbar-bg: #ffffff;
+      --topbar-border: #e2e8f0;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --menu-hover: #f1f5f9;
+      --primary: #0284c7;
+      --primary-glow: rgba(2, 132, 199, 0.15);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    /* ── Sidebar ── */
+    .sidebar {
+      width: 270px;
+      background: var(--sidebar-bg);
+      border-right: 1px solid var(--sidebar-border);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      transition: all 0.3s ease;
+      z-index: 10;
+    }
+
+    .sidebar-header {
+      padding: 22px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid var(--sidebar-border);
+    }
+    .sonede-logo {
+      height: 40px;
+      background: #ffffff;
+      padding: 4px 8px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+    .brand-info h2 {
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      line-height: 1.15;
+    }
+    .brand-info .tagline {
+      font-size: 11px;
+      color: #38bdf8;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .sidebar-menu {
+      padding: 20px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex: 1;
+    }
+
+    .menu-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 13px 16px;
+      color: var(--text-muted);
+      font-size: 13.5px;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      background: transparent;
+      border: none;
+      text-align: left;
+      width: 100%;
+      font-family: inherit;
+    }
+    .menu-item .icon {
+      font-size: 17px;
+    }
+    .menu-item:hover {
+      background: var(--menu-hover);
+      color: var(--text);
+      transform: translateX(3px);
+    }
+    .menu-item.active {
+      background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+      color: #ffffff;
+      box-shadow: 0 6px 18px var(--primary-glow);
+    }
+
+    .sidebar-footer {
+      padding: 16px 20px;
+      border-top: 1px solid var(--sidebar-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .user-card {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .user-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+      color: white;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+    }
+    .user-details .name {
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    .user-details .role-tag {
+      font-size: 10px;
+      font-weight: 700;
+      color: #a78bfa;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .logout-btn-mini {
+      background: transparent;
+      border: 1px solid var(--sidebar-border);
+      color: #f87171;
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      transition: all 0.2s;
+    }
+    .logout-btn-mini:hover {
+      background: rgba(239, 68, 68, 0.15);
+      border-color: #ef4444;
+    }
+
+    /* ── Main Area ── */
+    .main-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .topbar {
+      height: 64px;
+      background: var(--topbar-bg);
+      border-bottom: 1px solid var(--topbar-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      flex-shrink: 0;
+      transition: all 0.3s;
+    }
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .topbar-left h1 {
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+    }
+    .topbar-left .role-badge {
+      background: rgba(139, 92, 246, 0.12);
+      border: 1px solid rgba(139, 92, 246, 0.3);
+      color: #c084fc;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .theme-btn {
+      background: var(--sidebar-bg);
+      border: 1px solid var(--sidebar-border);
+      color: var(--text);
+      padding: 7px 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 12.5px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+    .theme-btn:hover {
+      border-color: #0284c7;
+    }
+
+    /* ── Content Area & Tabs ── */
+    .content-area {
+      flex: 1;
+      position: relative;
+      background: var(--bg);
+    }
+    .tab-iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: none;
+    }
+    .tab-iframe.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Sidebar ── -->
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <img src="/static/assets/sonede_logo.jpg" alt="SONEDE" class="sonede-logo">
+      <div class="brand-info">
+        <h2>SONEDE</h2>
+        <div class="tagline">Administration Générale</div>
+      </div>
+    </div>
+
+    <div class="sidebar-menu">
+      <button class="menu-item active" onclick="switchTab('charts', this)">
+        <span class="icon">📊</span>
+        <span>Tableaux de Bord</span>
+      </button>
+
+      <button class="menu-item" onclick="switchTab('status', this)">
+        <span class="icon">🔧</span>
+        <span>Assignations & Suivi</span>
+      </button>
+
+      <button class="menu-item" onclick="switchTab('users', this)">
+        <span class="icon">👥</span>
+        <span>Gestion Utilisateurs</span>
+      </button>
+
+      <button class="menu-item" onclick="switchTab('profile', this)">
+        <span class="icon">👤</span>
+        <span>Mon Profil</span>
+      </button>
+    </div>
+
+    <div class="sidebar-footer">
+      <div class="user-card">
+        <div class="user-avatar" id="userAvatar">DS</div>
+        <div class="user-details">
+          <div class="name" id="sidebarUser">Directeur</div>
+          <div class="role-tag">ADMINISTRATION</div>
+        </div>
+      </div>
+
+      <button class="logout-btn-mini" onclick="doLogout()" title="Déconnexion">
+        🚪
+      </button>
+    </div>
+  </div>
+
+  <!-- ── Main Content ── -->
+  <div class="main-content">
+    <div class="topbar">
+      <div class="topbar-left">
+        <h1 id="pageTitle">Tableaux de Bord Analytiques</h1>
+        <span class="role-badge">Siège Central Tunis</span>
+      </div>
+
+      <div class="topbar-right">
+        <button class="theme-btn" onclick="toggleTheme()">
+          <span id="themeIcon">🌙</span>
+          <span id="themeText">Mode Sombre</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="content-area">
+      <!-- Clean Public Metabase Dashboard -->
+      <iframe 
+        id="iframe-charts" 
+        class="tab-iframe active" 
+        src="http://localhost:8085/public/dashboard/34f858b2-1af7-4872-bed6-40d010c491f1#theme=night" 
+        style="width: 100%; height: 100%; border: none;">
+      </iframe>
+
+      <!-- Assignments Manager -->
+      <iframe id="iframe-status" class="tab-iframe" src="/static/status_manager.html"></iframe>
+
+      <!-- Users Manager -->
+      <iframe id="iframe-users" class="tab-iframe" src="/static/user_manager.html"></iframe>
+
+      <!-- Admin Profile -->
+      <iframe id="iframe-profile" class="tab-iframe" src="/static/admin_profile.html"></iframe>
+    </div>
+  </div>
+
+  <script>
+    // Theme Management
+    function initTheme() {
+      const saved = localStorage.getItem('sonede_theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', saved);
+      updateThemeUI(saved);
+    }
+
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute('data-theme') || 'dark';
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('sonede_theme', next);
+      updateThemeUI(next);
+      window.dispatchEvent(new Event('storage'));
+    }
+
+    function updateThemeUI(theme) {
+      document.getElementById('themeIcon').textContent = theme === 'dark' ? '🌙' : '☀️';
+      document.getElementById('themeText').textContent = theme === 'dark' ? 'Mode Sombre' : 'Mode Clair';
+
+      const frame = document.getElementById('iframe-charts');
+      if (frame) {
+        const hash = theme === 'dark' ? '#theme=night' : '#theme=light';
+        const base = 'http://localhost:8085/public/dashboard/34f858b2-1af7-4872-bed6-40d010c491f1';
+        frame.src = base + hash;
+      }
+    }
+    initTheme();
+
+    // Session Management
+    let currentUser = null;
+    (function() {
+      const s = localStorage.getItem('sonede_session') || localStorage.getItem('sonede_admin_session');
+      if (!s) {
+        window.location.href = '/static/login.html';
+        return;
+      }
+      try {
+        currentUser = JSON.parse(s);
+        if (!currentUser || currentUser.role !== 'ADMIN') {
+          window.location.href = '/static/login.html';
+          return;
+        }
+
+        const name = currentUser.fullName || 'Directeur SONEDE';
+        document.getElementById('sidebarUser').textContent = name;
+
+        const initials = name.split(' ').map(n => n[0]).slice(0, 2).join('').toUpperCase();
+        document.getElementById('userAvatar').textContent = initials || 'AD';
+
+      } catch(e) {
+        window.location.href = '/static/login.html';
+      }
+    })();
+
+    function switchTab(tabId, btn) {
+      document.querySelectorAll('.menu-item').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      document.querySelectorAll('.tab-iframe').forEach(el => el.classList.remove('active'));
+      const activeFrame = document.getElementById('iframe-' + tabId);
+      activeFrame.classList.add('active');
+
+      const titles = {
+        'charts': 'Tableaux de Bord Analytiques',
+        'status': 'Gestion & Assignation des Interventions',
+        'users': 'Gestion des Utilisateurs & Rôles',
+        'profile': 'Mon Profil Administrateur'
+      };
+      document.getElementById('pageTitle').textContent = titles[tabId] || '';
+
+      if (activeFrame.tagName === 'IFRAME' && tabId !== 'charts') {
+        activeFrame.src = activeFrame.src;
+      }
+    }
+
+    function doLogout() {
+      localStorage.removeItem('sonede_session');
+      localStorage.removeItem('sonede_admin_session');
+      window.location.href = '/static/login.html';
+    }
+  </script>
+</body>
+</html>

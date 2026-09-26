@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>SONEDE - Carte des Réclamations par Région (Tunisie)</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <style>
+    body, html { margin: 0; padding: 0; height: 100%; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    #map { width: 100%; height: 100vh; }
+    .legend {
+      position: absolute; bottom: 20px; right: 20px; z-index: 1000;
+      background: white; padding: 12px 16px; border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15); font-size: 13px; line-height: 1.6;
+    }
+    .legend-title { font-weight: bold; margin-bottom: 6px; color: #1e293b; }
+    .legend-item { display: flex; align-items: center; gap: 8px; }
+    .color-box { width: 14px; height: 14px; border-radius: 50%; display: inline-block; }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <div class="legend">
+    <div class="legend-title">Niveau de Criticité Régionale</div>
+    <div class="legend-item"><span class="color-box" style="background:#dc2626;"></span> 🔴 Critique (≥ 10 cas graves)</div>
+    <div class="legend-item"><span class="color-box" style="background:#f97316;"></span> 🟠 Élevé (5 - 9 cas graves)</div>
+    <div class="legend-item"><span class="color-box" style="background:#eab308;"></span> 🟡 Modéré (3 - 4 cas)</div>
+    <div class="legend-item"><span class="color-box" style="background:#22c55e;"></span> 🟢 Faible (< 3 cas)</div>
+  </div>
+
+  <script>
+    // Initialize map focused on Tunisia
+    const map = L.map('map').setView([34.0, 9.5], 6.8);
+
+    // Modern light map tiles
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; SONEDE Smart Platform | &copy; OpenStreetMap & CartoDB',
+      maxZoom: 18
+    }).addTo(map);
+
+    // Default sample data (populated live when embedded via API or Metabase postMessage)
+    const defaultData = [
+      { gouvernorat: 'Tunis', lat: 36.8065, lng: 10.1815, total: 42, critiques: 12, res: '65%' },
+      { gouvernorat: 'Sfax', lat: 34.7406, lng: 10.7603, total: 58, critiques: 18, res: '52%' },
+      { gouvernorat: 'Sousse', lat: 35.8256, lng: 10.6369, total: 34, critiques: 6, res: '70%' },
+      { gouvernorat: 'Kairouan', lat: 35.6781, lng: 10.0963, total: 29, critiques: 11, res: '48%' },
+      { gouvernorat: 'Gabès', lat: 33.8815, lng: 10.0982, total: 25, critiques: 9, res: '55%' },
+      { gouvernorat: 'Gafsa', lat: 34.4250, lng: 8.7842, total: 31, critiques: 14, res: '40%' },
+      { gouvernorat: 'Nabeul', lat: 36.4561, lng: 10.7376, total: 22, critiques: 4, res: '80%' },
+      { gouvernorat: 'Jendouba', lat: 36.5011, lng: 8.7802, total: 27, critiques: 10, res: '45%' },
+      { gouvernorat: 'Bizerte', lat: 37.2744, lng: 9.8739, total: 19, critiques: 3, res: '84%' },
+      { gouvernorat: 'Médenine', lat: 33.3549, lng: 10.5055, total: 18, critiques: 5, res: '60%' },
+      { gouvernorat: 'Monastir', lat: 35.7833, lng: 10.8333, total: 15, critiques: 2, res: '88%' }
+    ];
+
+    function getColor(critiques) {
+      if (critiques >= 10) return '#dc2626'; // Rouge critique
+      if (critiques >= 5)  return '#f97316'; // Orange élevé
+      if (critiques >= 3)  return '#eab308'; // Jaune modéré
+      return '#22c55e';                      // Vert faible
+    }
+
+    function renderMap(dataset) {
+      dataset.forEach(row => {
+        const radius = Math.max(12, Math.min(row.total * 0.8, 30));
+        const color = getColor(row.critiques);
+
+        const circle = L.circleMarker([row.lat, row.lng], {
+          radius: radius,
+          fillColor: color,
+          color: '#ffffff',
+          weight: 2,
+          opacity: 1,
+          fillOpacity: 0.8
+        }).addTo(map);
+
+        circle.bindPopup(`
+          <div style="font-family: sans-serif; padding: 4px;">
+            <h3 style="margin: 0 0 6px 0; color: #0f172a; border-bottom: 2px solid ${color}; padding-bottom: 4px;">
+              📍 ${row.gouvernorat}
+            </h3>
+            <p style="margin: 3px 0; font-size: 13px;"><b>Total réclamations:</b> ${row.total}</p>
+            <p style="margin: 3px 0; font-size: 13px; color: ${color}; font-weight: bold;">
+              <b>Réclamations critiques:</b> ${row.critiques}
+            </p>
+            <p style="margin: 3px 0; font-size: 13px;"><b>Taux de résolution:</b> ${row.res}</p>
+          </div>
+        `);
+      });
+    }
+
+    renderMap(defaultData);
+  </script>
+</body>
+</html>

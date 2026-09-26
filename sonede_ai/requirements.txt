@@ -1,0 +1,17 @@
+flask
+flask-cors
+scikit-learn
+pandas
+joblib
+scipy
+pymongo
+sentence-transformers
+transformers
+torch
+Pillow
+soundfile
+librosa
+edge-tts
+python-dotenv
+vosk
+av

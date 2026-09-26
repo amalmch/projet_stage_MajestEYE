@@ -1,0 +1,28 @@
+{
+  "trained_at": "2026-08-21T11:13:47.332837+00:00",
+  "embedding_model": "intfloat/multilingual-e5-base",
+  "embedding_dim": 768,
+  "n_samples": 640,
+  "n_train": 512,
+  "n_test": 128,
+  "category_classes": [
+    "coupure_non_signalee",
+    "coupure_planifiee",
+    "facturation",
+    "felicitation",
+    "fuite_visible",
+    "panne_pompage",
+    "pression_faible",
+    "qualite_eau",
+    "retard_intervention",
+    "suggestion"
+  ],
+  "urgency_classes": [
+    "critique",
+    "faible",
+    "haute",
+    "moyenne"
+  ],
+  "category_f1_macro": 0.969,
+  "urgency_f1_macro": 0.804
+}

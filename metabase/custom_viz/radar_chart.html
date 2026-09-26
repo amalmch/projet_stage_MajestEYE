@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>SONEDE - Radar des Problèmes par Mois</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #ffffff; padding: 20px; text-align: center; }
+    .container { max-width: 650px; margin: 0 auto; }
+    h2 { color: #1e293b; font-size: 18px; margin-bottom: 15px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>🕸️ Distribution Mensuelle des Types de Réclamations</h2>
+    <canvas id="radarChart"></canvas>
+  </div>
+
+  <script>
+    const months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+    
+    // Sample datasets for SONEDE categories
+    const chartData = {
+      labels: months,
+      datasets: [
+        {
+          label: "Coupure d'eau non signalée",
+          data: [12, 10, 15, 20, 35, 68, 95, 88, 45, 22, 14, 10],
+          borderColor: '#ef4444',
+          backgroundColor: 'rgba(239, 68, 68, 0.2)',
+          pointBackgroundColor: '#ef4444'
+        },
+        {
+          label: "Fuite visible / Travaux",
+          data: [25, 30, 28, 22, 18, 15, 20, 22, 35, 42, 48, 52],
+          borderColor: '#3b82f6',
+          backgroundColor: 'rgba(59, 130, 246, 0.2)',
+          pointBackgroundColor: '#3b82f6'
+        },
+        {
+          label: "Qualité de l'eau (goût/couleur)",
+          data: [15, 14, 18, 25, 30, 42, 55, 60, 40, 20, 16, 12],
+          borderColor: '#eab308',
+          backgroundColor: 'rgba(234, 179, 8, 0.2)',
+          pointBackgroundColor: '#eab308'
+        },
+        {
+          label: "Pression insuffisante",
+          data: [10, 12, 16, 22, 40, 75, 85, 80, 50, 25, 15, 10],
+          borderColor: '#8b5cf6',
+          backgroundColor: 'rgba(139, 92, 246, 0.2)',
+          pointBackgroundColor: '#8b5cf6'
+        }
+      ]
+    };
+
+    const ctx = document.getElementById('radarChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'radar',
+      data: chartData,
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'bottom' }
+        },
+        scales: {
+          r: {
+            angleLines: { color: '#e2e8f0' },
+            grid: { color: '#cbd5e1' },
+            pointLabels: { font: { size: 12, weight: 'bold' } },
+            ticks: { beginAtZero: true }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

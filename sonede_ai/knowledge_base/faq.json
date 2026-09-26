@@ -1,0 +1,281 @@
+[
+  {
+    "id": "faq_what_is_sonede",
+    "category": "general",
+    "titre": "Qu'est-ce que la SONEDE ?",
+    "keywords": ["sonede", "société", "eau", "tunisie", "distribution", "ما هي", "شنية"],
+    "contenu_fr": "La SONEDE (Société Nationale d'Exploitation et de Distribution des Eaux) est l'établissement public tunisien chargé de la production, du traitement et de la distribution de l'eau potable sur l'ensemble du territoire tunisien. Fondée en 1968, elle assure l'alimentation en eau potable de plus de 3 millions de foyers à travers 24 gouvernorats.",
+    "contenu_ar": "الصوندة (الشركة الوطنية لاستغلال وتوزيع المياه) هي المؤسسة العمومية التونسية المكلفة بإنتاج ومعالجة وتوزيع المياه الصالحة للشرب على كامل التراب التونسي. تأسست سنة 1968 وتزوّد أكثر من 3 مليون عائلة بالماء عبر 24 ولاية.",
+    "contenu_en": "SONEDE (Société Nationale d'Exploitation et de Distribution des Eaux) is the Tunisian public utility responsible for producing, treating and distributing drinking water across all of Tunisia. Founded in 1968, it serves over 3 million households across 24 governorates."
+  },
+  {
+    "id": "faq_contact_sonede",
+    "category": "general",
+    "titre": "Comment contacter la SONEDE ?",
+    "keywords": ["contact", "téléphone", "numéro", "appeler", "vert", "اتصال", "هاتف", "رقم"],
+    "contenu_fr": "Vous pouvez contacter la SONEDE de plusieurs façons :\n• Numéro vert (gratuit) : 80 100 319 — disponible 24h/24 pour les urgences\n• Site web : www.sonede.com.tn\n• Application mobile SONEDE\n• En vous rendant à l'agence SONEDE de votre zone (consultez les horaires ci-dessous)\n• Par courrier ou email à la direction régionale de votre gouvernorat.",
+    "contenu_ar": "يمكنكم الاتصال بالصوندة بعدة طرق:\n• الرقم الأخضر (مجاني): 80 100 319 — متاح 24 ساعة/24 للحالات الطارئة\n• الموقع الإلكتروني: www.sonede.com.tn\n• تطبيق الصوندة على الهاتف\n• بزيارة وكالة الصوندة في منطقتكم\n• عبر البريد أو الإيميل للإدارة الجهوية لولايتكم.",
+    "contenu_en": "You can contact SONEDE in several ways:\n• Toll-free number: 80 100 319 — available 24/7 for emergencies\n• Website: www.sonede.com.tn\n• SONEDE mobile app\n• Visit your local SONEDE agency\n• By mail or email to your regional directorate."
+  },
+  {
+    "id": "faq_agency_hours",
+    "category": "general",
+    "titre": "Horaires d'ouverture des agences SONEDE",
+    "keywords": ["horaire", "horaires", "ouverture", "fermé", "ouvert", "heure", "ساعات", "مواعيد", "فتح", "sa3at", "وقتاش", "بوسطة", "تحل", "تسكر", "wa9tech", "tekhdmou"],
+    "contenu_fr": "Les agences SONEDE sont ouvertes du lundi au vendredi :\n• Période hivernale (septembre–juin) : 8h30 – 16h30\n• Période estivale (juillet–août) : 7h30 – 13h30\nLes agences sont fermées le samedi, le dimanche et les jours fériés. Pour les urgences en dehors des horaires, appelez le numéro vert 80 100 319.",
+    "contenu_ar": "وكالات الصوندة مفتوحة من الإثنين إلى الجمعة:\n• الفترة الشتوية (سبتمبر–جوان): 8:30 – 16:30\n• الفترة الصيفية (جويلية–أوت): 7:30 – 13:30\nمغلقة السبت والأحد والعطل الرسمية. للحالات الطارئة خارج أوقات العمل، اتصلوا بالرقم الأخضر 80 100 319.",
+    "contenu_en": "SONEDE agencies are open Monday to Friday:\n• Winter hours (September–June): 8:30 AM – 4:30 PM\n• Summer hours (July–August): 7:30 AM – 1:30 PM\nClosed on Saturdays, Sundays, and public holidays. For emergencies outside business hours, call the toll-free number 80 100 319."
+  },
+  {
+    "id": "faq_how_to_pay",
+    "category": "facturation",
+    "titre": "Comment payer ma facture d'eau ?",
+    "keywords": ["payer", "paiement", "facture", "régler", "خلاص", "دفع", "فاتورة", "5aless", "pay", "payment"],
+    "contenu_fr": "Plusieurs moyens de paiement sont disponibles :\n• En ligne via le site www.sonede.com.tn ou l'application mobile\n• Par virement bancaire ou postal\n• Aux guichets des agences SONEDE\n• Dans les bureaux de poste tunisienne\n• Via les bornes de paiement électronique disponibles dans certaines agences\nLe paiement est à effectuer dans les 45 jours suivant la date d'émission de la facture pour éviter les pénalités de retard.",
+    "contenu_ar": "تتوفر عدة وسائل دفع:\n• عبر الإنترنت من خلال الموقع www.sonede.com.tn أو التطبيق\n• عبر تحويل بنكي أو بريدي\n• في شبابيك وكالات الصوندة\n• في مكاتب البريد التونسي\n• عبر أجهزة الدفع الإلكتروني المتوفرة في بعض الوكالات\nيجب الدفع خلال 45 يوما من تاريخ إصدار الفاتورة لتفادي غرامات التأخير.",
+    "contenu_en": "Several payment methods are available:\n• Online via www.sonede.com.tn or the mobile app\n• By bank or postal transfer\n• At SONEDE agency counters\n• At Tunisian post offices\n• Via electronic payment terminals at some agencies\nPayment is due within 45 days of the invoice date to avoid late penalties."
+  },
+  {
+    "id": "faq_read_bill",
+    "category": "facturation",
+    "titre": "Comment lire et comprendre ma facture ?",
+    "keywords": ["lire", "comprendre", "facture", "montant", "consommation", "tranche", "قراءة", "فهم", "فاتورة", "مبلغ", "استهلاك"],
+    "contenu_fr": "Votre facture SONEDE comprend :\n• Le numéro de compteur et votre référence client\n• La période de consommation (relevé précédent → relevé actuel)\n• Le volume consommé en m³\n• Le détail par tranche tarifaire (la tarification est progressive)\n• Les taxes et redevances\n• Le montant total TTC\nSi votre consommation semble anormalement élevée, vérifiez d'abord s'il n'y a pas de fuite invisible (chasse d'eau, robinet qui goutte).",
+    "contenu_ar": "تتضمن فاتورة الصوندة:\n• رقم العداد ومرجع الحريف\n• فترة الاستهلاك (القراءة السابقة ← القراءة الحالية)\n• الكمية المستهلكة بالمتر المكعب\n• التفصيل حسب الشريحة التعريفية (التعريفة تصاعدية)\n• الأداءات والمعاليم\n• المبلغ الجملي\nإذا بدا استهلاككم مرتفعا بشكل غير عادي، تحققوا أولا من عدم وجود تسرب.",
+    "contenu_en": "Your SONEDE bill includes:\n• Meter number and your customer reference\n• Consumption period (previous reading → current reading)\n• Volume consumed in m³\n• Breakdown by tariff tier (pricing is progressive)\n• Taxes and fees\n• Total amount including tax\nIf your consumption seems unusually high, first check for hidden leaks (toilet, dripping faucet)."
+  },
+  {
+    "id": "faq_tariff",
+    "category": "facturation",
+    "titre": "Quels sont les tarifs de l'eau ?",
+    "keywords": ["tarif", "tarifs", "prix", "coût", "tranche", "m3", "تعريفة", "ثمن", "سعر", "شريحة"],
+    "contenu_fr": "La tarification de l'eau potable en Tunisie est progressive par tranches de consommation trimestrielle :\n• Tranche 1 (0-20 m³) : tarif social subventionné\n• Tranche 2 (21-40 m³) : tarif intermédiaire\n• Tranche 3 (41-70 m³) : tarif normal\n• Tranche 4 (71-100 m³) : tarif élevé\n• Tranche 5 (>100 m³) : tarif dissuasif\nPlus vous consommez, plus le prix au m³ augmente. Les tarifs exacts sont disponibles sur www.sonede.com.tn ou auprès de votre agence locale.",
+    "contenu_ar": "تعريفة المياه الصالحة للشرب في تونس تصاعدية حسب شرائح الاستهلاك الثلاثي:\n• الشريحة 1 (0-20 م³): تعريفة اجتماعية مدعومة\n• الشريحة 2 (21-40 م³): تعريفة متوسطة\n• الشريحة 3 (41-70 م³): تعريفة عادية\n• الشريحة 4 (71-100 م³): تعريفة مرتفعة\n• الشريحة 5 (أكثر من 100 م³): تعريفة ردعية\nكلما زاد الاستهلاك، ارتفع سعر المتر المكعب.",
+    "contenu_en": "Drinking water pricing in Tunisia is progressive, based on quarterly consumption tiers:\n• Tier 1 (0-20 m³): subsidized social rate\n• Tier 2 (21-40 m³): intermediate rate\n• Tier 3 (41-70 m³): standard rate\n• Tier 4 (71-100 m³): high rate\n• Tier 5 (>100 m³): deterrent rate\nThe more you consume, the higher the price per m³. Exact rates are available on www.sonede.com.tn."
+  },
+  {
+    "id": "faq_new_connection",
+    "category": "branchement",
+    "titre": "Comment demander un nouveau branchement d'eau ?",
+    "keywords": ["branchement", "raccordement", "nouveau", "abonnement", "demande", "ربط", "اشتراك", "جديد", "طلب", "connection"],
+    "contenu_fr": "Pour demander un nouveau branchement d'eau potable :\n1. Rendez-vous à l'agence SONEDE de votre zone avec :\n   • Copie de la CIN (carte d'identité nationale)\n   • Titre de propriété ou contrat de location\n   • Plan de situation du logement\n   • Permis de bâtir (pour les constructions neuves)\n2. Remplissez le formulaire de demande de branchement\n3. Un agent SONEDE effectuera une visite technique\n4. Après acceptation, vous recevrez un devis à régler\n5. Les travaux de branchement sont réalisés dans un délai de 15 à 30 jours après paiement\nLe coût dépend de la distance entre votre logement et la canalisation principale.",
+    "contenu_ar": "لطلب ربط جديد بالماء الصالح للشرب:\n1. توجهوا إلى وكالة الصوندة في منطقتكم ومعكم:\n   • نسخة من بطاقة التعريف الوطنية\n   • عقد الملكية أو عقد الكراء\n   • مثال موقع المسكن\n   • رخصة البناء (للبناءات الجديدة)\n2. إملاء مطبوعة طلب الربط\n3. يقوم عون الصوندة بزيارة تقنية\n4. بعد القبول، تتحصلون على تقدير يجب خلاصه\n5. تتم أشغال الربط في أجل 15 إلى 30 يوما بعد الدفع.",
+    "contenu_en": "To request a new water connection:\n1. Visit your local SONEDE agency with:\n   • Copy of national ID card\n   • Property title or rental contract\n   • Location plan of the dwelling\n   • Building permit (for new constructions)\n2. Fill out the connection request form\n3. A SONEDE agent will perform a technical visit\n4. After approval, you'll receive a quote to pay\n5. Connection work is completed within 15 to 30 days after payment."
+  },
+  {
+    "id": "faq_meter_reading",
+    "category": "compteur",
+    "titre": "Comment lire mon compteur d'eau ?",
+    "keywords": ["compteur", "lire", "lecture", "relève", "index", "عداد", "قراءة", "مؤشر", "meter"],
+    "contenu_fr": "Pour lire votre compteur d'eau :\n1. Repérez le cadran principal (chiffres blancs sur fond noir = m³ entiers)\n2. Les chiffres rouges indiquent les fractions de m³ (litres)\n3. Notez les chiffres blancs de gauche à droite\n4. Pour calculer votre consommation : index actuel – index précédent (sur votre dernière facture)\n\nConseil : relevez votre compteur régulièrement pour surveiller votre consommation et détecter une éventuelle fuite (si le compteur tourne alors que tous les robinets sont fermés, il y a probablement une fuite).",
+    "contenu_ar": "لقراءة عداد الماء:\n1. حدد الميناء الرئيسي (أرقام بيضاء على خلفية سوداء = متر مكعب كامل)\n2. الأرقام الحمراء تشير إلى أجزاء المتر المكعب (لترات)\n3. سجل الأرقام البيضاء من اليسار إلى اليمين\n4. لحساب استهلاككم: المؤشر الحالي – المؤشر السابق (في آخر فاتورة)\n\nنصيحة: راقبوا العداد بانتظام لاكتشاف التسربات.",
+    "contenu_en": "To read your water meter:\n1. Find the main dial (white digits on black = whole m³)\n2. Red digits show fractions of m³ (liters)\n3. Note the white digits from left to right\n4. To calculate consumption: current reading – previous reading (from your last bill)\n\nTip: Check your meter regularly. If it turns while all taps are closed, you likely have a leak."
+  },
+  {
+    "id": "faq_meter_verification",
+    "category": "compteur",
+    "titre": "Comment demander une vérification de compteur ?",
+    "keywords": ["vérification", "compteur", "vérifier", "défaillant", "bloqué", "تحقق", "عداد", "فحص", "معطل", "نبدل", "تبديل", "nbadel", "mangal", "mطلب", "matlab"],
+    "contenu_fr": "Si vous suspectez que votre compteur est défaillant (bloqué, tourne trop vite, fissure) :\n1. Rendez-vous à votre agence SONEDE locale\n2. Déposez une demande de vérification du compteur\n3. Un technicien viendra contrôler le compteur sur place\n4. Si le compteur est défectueux, il sera remplacé gratuitement\n5. Si la vérification confirme un fonctionnement normal, des frais de vérification peuvent s'appliquer\n\nVous pouvez aussi faire un test simple : fermez tous les robinets et vérifiez si le compteur continue de tourner (signe de fuite).",
+    "contenu_ar": "إذا شككتم في عطب العداد (متوقف، يدور بسرعة، شقوق):\n1. توجهوا إلى وكالة الصوندة المحلية\n2. قدموا طلب فحص العداد\n3. يأتي فني للتحقق منه في عين المكان\n4. إذا كان العداد معطلا، يتم تغييره مجانا\n5. إذا أكد الفحص سلامة العداد، قد تُطبق معاليم الفحص\n\nيمكنكم إجراء اختبار بسيط: أغلقوا كل الحنفيات وتحققوا إن كان العداد يواصل الدوران.",
+    "contenu_en": "If you suspect your meter is faulty (stuck, running too fast, cracked):\n1. Visit your local SONEDE agency\n2. Submit a meter verification request\n3. A technician will inspect the meter on-site\n4. If defective, it will be replaced free of charge\n5. If the check confirms normal operation, verification fees may apply."
+  },
+  {
+    "id": "faq_water_quality_standards",
+    "category": "qualite_eau",
+    "titre": "La qualité de l'eau du robinet est-elle sûre ?",
+    "keywords": ["qualité", "sûre", "potable", "boire", "norme", "analyse", "جودة", "صالحة", "شرب", "معايير", "تحليل"],
+    "contenu_fr": "L'eau distribuée par la SONEDE est potable et conforme aux normes tunisiennes et de l'OMS. Elle subit plusieurs étapes de traitement :\n• Coagulation et floculation\n• Décantation et filtration\n• Désinfection au chlore\n• Contrôles quotidiens en laboratoire\n\nLa SONEDE effectue plus de 300 000 analyses par an sur l'ensemble du réseau. Si vous constatez un changement inhabituel (couleur, goût, odeur), signalez-le immédiatement : cela peut indiquer un problème ponctuel sur le réseau local.",
+    "contenu_ar": "الماء الموزع من طرف الصوندة صالح للشرب ومطابق للمعايير التونسية ومعايير منظمة الصحة العالمية. يمر بعدة مراحل معالجة:\n• التخثير والتلبيد\n• الترسيب والترشيح\n• التعقيم بالكلور\n• مراقبة يومية في المخبر\n\nتجري الصوندة أكثر من 300 ألف تحليل سنويا. إذا لاحظتم تغييرا غير عادي، بلغوا عنه فورا.",
+    "contenu_en": "Water distributed by SONEDE is safe to drink and meets Tunisian and WHO standards. It undergoes multiple treatment stages including coagulation, flocculation, sedimentation, filtration, and chlorine disinfection. SONEDE performs over 300,000 quality tests annually across the network."
+  },
+  {
+    "id": "faq_emergency",
+    "category": "urgence",
+    "titre": "Que faire en cas d'urgence liée à l'eau ?",
+    "keywords": ["urgence", "urgent", "inondation", "fuite", "danger", "طوارئ", "عاجل", "فيضان", "خطر", "emergency"],
+    "contenu_fr": "En cas d'urgence :\n• Appelez immédiatement le numéro vert 80 100 319 (24h/24, 7j/7)\n• Fuite importante sur la voie publique : signalez l'emplacement exact et éloignez-vous si l'eau forme un jet puissant\n• Eau contaminée (odeur, couleur suspecte) : ne consommez pas l'eau et utilisez de l'eau en bouteille en attendant l'intervention\n• Inondation due à une rupture de canalisation : coupez si possible l'arrivée d'eau au compteur\n\nVous pouvez aussi signaler l'urgence via l'application mobile SONEDE pour un traitement plus rapide.",
+    "contenu_ar": "في حالة الطوارئ:\n• اتصلوا فورا بالرقم الأخضر 80 100 319 (متاح 24 ساعة/24، 7 أيام/7)\n• تسرب كبير في الطريق: حددوا المكان بدقة وابتعدوا إذا كان الماء يتدفق بقوة\n• ماء ملوث (رائحة أو لون مشبوه): لا تستهلكوا الماء واستعملوا ماء معلب\n• فيضان بسبب انفجار أنبوب: أغلقوا صنبور العداد إن أمكن.",
+    "contenu_en": "In an emergency:\n• Call the toll-free number 80 100 319 immediately (24/7)\n• Major leak on public road: report the exact location and keep distance if water is jetting\n• Contaminated water: do not consume, use bottled water\n• Flooding from pipe burst: shut off water at the meter if possible."
+  },
+  {
+    "id": "faq_mobile_app",
+    "category": "services_numeriques",
+    "titre": "L'application mobile SONEDE",
+    "keywords": ["application", "app", "mobile", "télécharger", "installer", "تطبيق", "هاتف", "تحميل", "download"],
+    "contenu_fr": "L'application mobile SONEDE vous permet de :\n• Consulter vos factures et votre historique de consommation\n• Payer vos factures en ligne\n• Signaler un problème ou une réclamation avec géolocalisation\n• Suivre l'avancement de vos réclamations\n• Recevoir les alertes de coupure programmée dans votre zone\n• Localiser l'agence SONEDE la plus proche\n\nDisponible sur Google Play (Android) et App Store (iOS). Cherchez \"SONEDE\" dans votre store.",
+    "contenu_ar": "يمكنكم تطبيق الصوندة من:\n• الاطلاع على فواتيركم وتاريخ استهلاككم\n• دفع الفواتير عبر الإنترنت\n• الإبلاغ عن مشكلة أو تقديم شكوى مع تحديد الموقع\n• متابعة حالة شكاواكم\n• تلقي تنبيهات القطع المبرمج في منطقتكم\n• تحديد أقرب وكالة صوندة\n\nمتوفر على Google Play و App Store.",
+    "contenu_en": "The SONEDE mobile app lets you:\n• View your bills and consumption history\n• Pay bills online\n• Report problems with geolocation\n• Track your complaint status\n• Receive planned cut alerts for your area\n• Find the nearest SONEDE agency\n\nAvailable on Google Play (Android) and App Store (iOS)."
+  },
+  {
+    "id": "faq_online_services",
+    "category": "services_numeriques",
+    "titre": "Services en ligne SONEDE",
+    "keywords": ["en ligne", "internet", "site", "web", "portail", "إنترنت", "موقع", "بوابة", "online"],
+    "contenu_fr": "Sur le portail en ligne de la SONEDE (www.sonede.com.tn), vous pouvez :\n• Créer votre espace client personnel\n• Consulter et télécharger vos factures\n• Effectuer un paiement en ligne sécurisé\n• Soumettre une réclamation\n• Suivre l'état de vos demandes\n• Consulter les annonces de coupures programmées\n• Trouver les coordonnées de votre agence locale.",
+    "contenu_ar": "عبر البوابة الإلكترونية للصوندة (www.sonede.com.tn) يمكنكم:\n• إنشاء فضائكم الخاص\n• الاطلاع على الفواتير وتحميلها\n• الدفع عبر الإنترنت بشكل آمن\n• تقديم شكوى\n• متابعة حالة طلباتكم\n• الاطلاع على إعلانات القطع المبرمج\n• إيجاد معطيات وكالتكم المحلية.",
+    "contenu_en": "On the SONEDE online portal (www.sonede.com.tn), you can:\n• Create your personal client space\n• View and download your bills\n• Make secure online payments\n• Submit a complaint\n• Track your requests\n• Check planned cut announcements\n• Find your local agency details."
+  },
+  {
+    "id": "faq_complaint_process",
+    "category": "processus_reclamation",
+    "titre": "Comment fonctionne le processus de réclamation ?",
+    "keywords": ["processus", "réclamation", "déposer", "étapes", "traitement", "عملية", "شكوى", "إيداع", "مراحل", "معالجة"],
+    "contenu_fr": "Le processus de réclamation SONEDE fonctionne ainsi :\n1. Soumission : via l'application mobile, le chatbot, le numéro vert ou en agence\n2. Enregistrement : votre réclamation reçoit un numéro unique (PL-XXXXXXXX)\n3. Classification : elle est classée par type et niveau d'urgence\n4. Affectation : un technicien est désigné pour votre zone\n5. Intervention : le technicien se déplace pour résoudre le problème\n6. Clôture : la réclamation est marquée comme résolue\n\nDélais moyens de résolution :\n• Urgences (fuites, coupures) : 24 à 48 heures\n• Problèmes de pression/qualité : 3 à 5 jours\n• Facturation : 5 à 10 jours ouvrables.",
+    "contenu_ar": "عملية الشكوى في الصوندة:\n1. التقديم: عبر التطبيق أو الشات بوت أو الرقم الأخضر أو الوكالة\n2. التسجيل: تحصل شكواكم على رقم وحيد (PL-XXXXXXXX)\n3. التصنيف: حسب النوع ودرجة الاستعجال\n4. التكليف: يتم تعيين فني لمنطقتكم\n5. التدخل: يتنقل الفني لحل المشكلة\n6. الإغلاق: تُعلَّم الشكوى كمحلولة\n\nآجال المعالجة المتوسطة:\n• الحالات العاجلة: 24 إلى 48 ساعة\n• مشاكل الضغط/الجودة: 3 إلى 5 أيام\n• الفوترة: 5 إلى 10 أيام عمل.",
+    "contenu_en": "The SONEDE complaint process:\n1. Submission: via mobile app, chatbot, toll-free number, or agency\n2. Registration: your complaint gets a unique ID (PL-XXXXXXXX)\n3. Classification: by type and urgency level\n4. Assignment: a technician is assigned to your area\n5. Intervention: the technician resolves the issue\n6. Closure: complaint is marked as resolved\n\nAverage resolution times:\n• Emergencies (leaks, cuts): 24-48 hours\n• Pressure/quality issues: 3-5 days\n• Billing: 5-10 business days."
+  },
+  {
+    "id": "faq_complaint_documents",
+    "category": "processus_reclamation",
+    "titre": "Quels documents pour une réclamation de facturation ?",
+    "keywords": ["documents", "pièces", "justificatifs", "facture", "réclamation", "وثائق", "مستندات", "فاتورة"],
+    "contenu_fr": "Pour une réclamation de facturation, préparez :\n• Votre numéro de compteur (inscrit sur le compteur et sur votre facture)\n• Les factures des 3 derniers mois (pour comparaison)\n• Une photo du compteur montrant l'index actuel\n• Votre référence client (en haut de la facture)\n• Tout justificatif utile (absence prolongée, relevé du compteur par vos soins, etc.)\n\nVous pouvez soumettre ces pièces en agence ou les joindre à votre réclamation via l'application mobile.",
+    "contenu_ar": "للشكوى المتعلقة بالفوترة، جهزوا:\n• رقم العداد (مكتوب على العداد وعلى الفاتورة)\n• فواتير الأشهر الثلاثة الأخيرة (للمقارنة)\n• صورة للعداد تُظهر المؤشر الحالي\n• مرجع الحريف (أعلى الفاتورة)\n• أي وثيقة مفيدة (غياب مطول، قراءة ذاتية للعداد، إلخ)\n\nيمكنكم تقديم هذه الوثائق في الوكالة أو إرفاقها عبر التطبيق.",
+    "contenu_en": "For a billing complaint, prepare:\n• Your meter number (on the meter and your bill)\n• Last 3 months' bills (for comparison)\n• A photo of the meter showing the current reading\n• Your customer reference (top of the bill)\n• Any relevant supporting documents."
+  },
+  {
+    "id": "faq_water_conservation",
+    "category": "general",
+    "titre": "Conseils pour économiser l'eau",
+    "keywords": ["économiser", "économie", "gaspillage", "consommation", "conseils", "توفير", "ترشيد", "استهلاك", "نصائح", "save", "conserve"],
+    "contenu_fr": "Quelques gestes simples pour économiser l'eau :\n• Réparez les fuites rapidement (un robinet qui goutte = 35 m³/an gaspillés)\n• Prenez des douches courtes plutôt que des bains\n• Fermez le robinet pendant le brossage des dents\n• Utilisez un lave-vaisselle et lave-linge à pleine charge\n• Arrosez le jardin tôt le matin ou tard le soir\n• Installez des mousseurs sur vos robinets pour réduire le débit\n• Vérifiez régulièrement votre compteur pour détecter les fuites invisibles.",
+    "contenu_ar": "بعض الحركات البسيطة لتوفير الماء:\n• أصلحوا التسربات بسرعة (حنفية تقطر = 35 م³/سنة ضائعة)\n• خذوا دوش قصير بدل حمام\n• أغلقوا الحنفية أثناء غسل الأسنان\n• استعملوا غسالة الأواني والملابس بحمولة كاملة\n• اسقوا الحديقة في الصباح الباكر أو المساء\n• ركبوا مقللات التدفق على الحنفيات\n• راقبوا العداد بانتظام لاكتشاف التسربات.",
+    "contenu_en": "Simple ways to save water:\n• Fix leaks quickly (a dripping tap wastes 35 m³/year)\n• Take short showers instead of baths\n• Turn off the tap while brushing teeth\n• Run dishwasher and washing machine at full load\n• Water the garden early morning or late evening\n• Install aerators on faucets\n• Check your meter regularly for hidden leaks."
+  },
+  {
+    "id": "faq_coupure_non_signalee",
+    "category": "coupure_non_signalee",
+    "titre": "Coupure d'eau non annoncée",
+    "keywords": ["coupure", "pas d'eau", "coupé", "انقطاع", "ما فماش", "مقطوع", "9at3a"],
+    "contenu_fr": "Si vous n'avez pas d'eau et qu'aucune coupure n'a été annoncée par la SONEDE dans votre zone, cela peut être une panne technique (casse de canalisation, panne de pompage) plutôt qu'une coupure planifiée. Vous pouvez signaler l'incident via le numéro vert ou l'application mobile ; une équipe technique intervient en priorité sur les coupures non signalées, en particulier si plusieurs signalements proviennent de la même zone.",
+    "contenu_ar": "إذا انقطع الماء عندك ولم يتم الإعلان عن أي قطع مبرمج في منطقتك من طرف الصوندة، فقد يكون السبب عطبا فنيا (كسر في الأنابيب أو عطب في محطة الضخ). يمكنكم الإبلاغ عبر الرقم الأخضر أو التطبيق، ويتم التدخل بالأولوية عند تعدد الإشعارات من نفس المنطقة.",
+    "contenu_en": "If you have no water and no planned cut was announced for your area, it may be a technical failure (broken pipe, pump failure). Report via the toll-free number or the app. Priority is given when multiple reports come from the same zone."
+  },
+  {
+    "id": "faq_coupure_planifiee",
+    "category": "coupure_planifiee",
+    "titre": "Coupure d'eau planifiée / travaux annoncés",
+    "keywords": ["planifiée", "programmée", "travaux", "maintenance", "مبرمج", "أشغال", "صيانة"],
+    "contenu_fr": "Les coupures planifiées (travaux de maintenance, remplacement de canalisations) sont annoncées à l'avance par la SONEDE, généralement avec une plage horaire de retour prévue. Consultez les annonces locales de votre délégation avant de signaler une nouvelle réclamation : si une intervention est déjà en cours dans votre zone, il est inutile de créer un doublon, mais vous pouvez suivre l'avancement.",
+    "contenu_ar": "يتم الإعلان مسبقا عن القطع المبرمج (أشغال صيانة أو تغيير الأنابيب) من طرف الصوندة، مع تحديد موعد تقريبي لعودة الماء. يرجى التأكد من الإعلانات المحلية لمنطقتكم قبل تقديم شكوى جديدة.",
+    "contenu_en": "Planned cuts (maintenance, pipe replacement) are announced in advance by SONEDE with an estimated restoration time. Check your area's announcements before filing a new complaint."
+  },
+  {
+    "id": "faq_pression_faible",
+    "category": "pression_faible",
+    "titre": "Pression d'eau faible ou intermittente",
+    "keywords": ["pression", "faible", "débit", "intermittent", "ضغط", "ضعيف", "متقطع", "dh3if"],
+    "contenu_fr": "Une pression faible ou une eau qui \"va et vient\" est souvent liée à la vétusté du réseau local, à une forte demande simultanée (heures de pointe) ou à une altitude élevée dans certaines zones. Si le problème persiste depuis plusieurs jours, signalez-le avec votre délégation précise : le pourcentage de vétusté du réseau dans votre zone permet aux équipes SONEDE de prioriser les travaux de réhabilitation.",
+    "contenu_ar": "ضعف ضغط الماء أو انقطاعه المتكرر غالبا ما يكون بسبب قدم الشبكة المحلية أو كثرة الاستهلاك في أوقات الذروة أو ارتفاع المنطقة. إذا استمرت المشكلة لعدة أيام، يرجى الإبلاغ مع تحديد المعتمدية بدقة.",
+    "contenu_en": "Low or intermittent pressure is often due to aging local infrastructure, high peak-hour demand, or elevated terrain. If the problem persists for days, report it with your exact delegation."
+  },
+  {
+    "id": "faq_qualite_eau",
+    "category": "qualite_eau",
+    "titre": "Qualité de l'eau (goût, odeur, couleur)",
+    "keywords": ["qualité", "goût", "odeur", "couleur", "trouble", "جودة", "طعم", "رائحة", "لون", "عكر"],
+    "contenu_fr": "Une eau trouble, colorée ou avec une odeur inhabituelle doit être signalée rapidement : c'est traité en priorité haute. En attendant l'intervention, évitez de consommer l'eau du robinet pour la boisson ou la cuisine et privilégiez de l'eau en bouteille. Un prélèvement peut être demandé par les équipes SONEDE pour analyse.",
+    "contenu_ar": "الماء العكر أو الملون أو ذو الرائحة غير المعتادة يجب الإبلاغ عنه بسرعة، ويتم التعامل معه بأولوية عالية. في انتظار التدخل، يفضل تجنب استهلاك ماء الصنبور للشرب أو الطبخ واستعمال ماء معلب.",
+    "contenu_en": "Cloudy, discolored, or unusual-smelling water should be reported immediately — it's treated as high priority. Avoid drinking tap water until resolved and use bottled water."
+  },
+  {
+    "id": "faq_fuite_visible",
+    "category": "fuite_visible",
+    "titre": "Fuite d'eau visible sur la voie publique",
+    "keywords": ["fuite", "visible", "canalisation", "cassée", "تسرب", "ظاهر", "أنابيب", "كسر", "tsarrub"],
+    "contenu_fr": "Une fuite visible (canalisation cassée, eau qui coule en continu sur la chaussée) doit être signalée immédiatement avec la localisation la plus précise possible (rue, point de repère). Une photo jointe accélère l'intervention. Ce type de réclamation est traité en urgence car il représente un gaspillage important et un risque pour la voirie.",
+    "contenu_ar": "التسرب الظاهر (كسر في الأنابيب أو ماء يجري باستمرار في الطريق) يجب الإبلاغ عنه فورا مع تحديد الموقع بدقة. إرفاق صورة يسرع التدخل. يتم التعامل مع هذا النوع من الشكاوى بصفة عاجلة.",
+    "contenu_en": "A visible leak (broken pipe, water flowing on the road) should be reported immediately with the most precise location. A photo speeds up intervention. This is treated as an emergency."
+  },
+  {
+    "id": "faq_panne_pompage",
+    "category": "panne_pompage",
+    "titre": "Panne de pompage / coupure électrique liée",
+    "keywords": ["pompage", "pompe", "station", "panne", "électrique", "ضخ", "مضخة", "محطة", "عطب", "كهرباء"],
+    "contenu_fr": "Les pannes de stations de pompage sont souvent causées par des coupures électriques (STEG) ou des défaillances mécaniques et peuvent affecter une zone entière pendant plusieurs jours. La SONEDE priorise ces incidents car ils touchent de nombreux foyers simultanément. Suivez les annonces de votre délégation pour connaître le délai de retour estimé.",
+    "contenu_ar": "أعطاب محطات الضخ غالبا ما تكون بسبب انقطاع الكهرباء (الستاغ) أو أعطاب ميكانيكية، وقد تؤثر على منطقة كاملة لعدة أيام. تعطي الصوندة الأولوية لهذه الحوادث لأنها تمس عددا كبيرا من العائلات في نفس الوقت.",
+    "contenu_en": "Pumping station failures are often caused by power cuts (STEG) or mechanical failures and can affect an entire area for days. SONEDE prioritizes these as they impact many households simultaneously."
+  },
+  {
+    "id": "faq_facturation",
+    "category": "facturation",
+    "titre": "Litige de facturation",
+    "keywords": ["litige", "contestation", "surfacturation", "erreur", "facture", "نزاع", "اعتراض", "خطأ", "فاتورة"],
+    "contenu_fr": "En cas de facture anormalement élevée sans changement de consommation, vérifiez d'abord s'il n'y a pas de fuite invisible (chasse d'eau, robinet qui goutte, canalisation enterrée). Vous pouvez demander une vérification du compteur auprès de votre agence locale SONEDE. Un dossier de réclamation de facturation nécessite généralement le numéro de compteur et les factures des mois précédents.",
+    "contenu_ar": "في حالة فاتورة مرتفعة بشكل غير عادي دون تغيير في الاستهلاك، يرجى التحقق أولا من عدم وجود تسرب غير ظاهر. يمكنكم طلب التحقق من العداد لدى الوكالة المحلية للصوندة.",
+    "contenu_en": "If your bill is unexpectedly high without any change in consumption, first check for hidden leaks. You can request a meter verification at your local SONEDE agency."
+  },
+  {
+    "id": "faq_retard_intervention",
+    "category": "retard_intervention",
+    "titre": "Retard ou absence d'intervention technique",
+    "keywords": ["retard", "intervention", "attente", "jours", "تأخر", "تدخل", "انتظار", "أيام"],
+    "contenu_fr": "Si plusieurs jours se sont écoulés sans intervention malgré un signalement, vérifiez d'abord le statut de votre réclamation existante avant d'en créer une nouvelle : cela évite de retarder le traitement en dupliquant les tickets. Si aucune réclamation n'a été enregistrée à votre nom, il est possible que le signalement précédent n'ait pas abouti.",
+    "contenu_ar": "إذا مرت عدة أيام دون تدخل رغم تقديم شكوى، يرجى التحقق أولا من حالة شكواكم قبل تقديم شكوى جديدة، لتفادي تأخير المعالجة بسبب تكرار الملفات.",
+    "contenu_en": "If several days have passed without intervention despite your report, first check your existing complaint status before filing a new one to avoid duplicate tickets."
+  },
+  {
+    "id": "faq_suivi_reclamation",
+    "category": "suivi_reclamation",
+    "titre": "Suivi et avancement de réclamation",
+    "keywords": ["suivi", "avancement", "statut", "ticket", "متابعة", "حالة", "تقدم"],
+    "contenu_fr": "Pour suivre l'avancement de votre réclamation, vous pouvez utiliser l'onglet 'Suivi des réclamations' dans l'application mobile, ou saisir votre numéro de réclamation (commençant par PL-) directement dans cette discussion pour que je recherche son statut en temps réel.",
+    "contenu_ar": "لمتابعة حالة شكواكم، يمكنك استخدام تبويب 'متابعة الشكاوى' في التطبيق الهاتفي، أو إدخال رقم الشكوى (الذي يبدأ بـ -PL) مباشرة في هذه المحادثة لأقوم بالبحث عن حالتها في الوقت الفعلي.",
+    "contenu_en": "To track your complaint, use the 'Complaint Tracking' tab in the mobile app, or type your complaint number (starting with PL-) in this chat and I'll look up its status in real time."
+  },
+  {
+    "id": "faq_leak_hidden",
+    "category": "fuite_visible",
+    "titre": "Comment détecter une fuite invisible chez vous ?",
+    "keywords": ["fuite", "invisible", "détecter", "caché", "compteur", "تسرب", "مخفي", "كشف"],
+    "contenu_fr": "Pour détecter une fuite invisible :\n1. Fermez tous les robinets et appareils utilisant de l'eau\n2. Notez l'index de votre compteur\n3. Attendez 1-2 heures sans utiliser d'eau\n4. Relevez à nouveau le compteur\n5. Si l'index a changé, il y a une fuite\n\nLes causes fréquentes : chasse d'eau défectueuse (la fuite la plus courante et la plus silencieuse), joints usés, canalisation enterrée fissurée. Une fuite non traitée peut augmenter votre facture de 50 à 200 m³ par trimestre.",
+    "contenu_ar": "لكشف تسرب غير ظاهر:\n1. أغلقوا كل الحنفيات والأجهزة التي تستعمل الماء\n2. سجلوا مؤشر العداد\n3. انتظروا 1-2 ساعة دون استعمال الماء\n4. أعيدوا قراءة العداد\n5. إذا تغير المؤشر، فهناك تسرب\n\nالأسباب الشائعة: صندوق طرد معطل، جوانات بالية، أنبوب مدفون مشقق.",
+    "contenu_en": "To detect a hidden leak:\n1. Close all taps and water-using appliances\n2. Note your meter reading\n3. Wait 1-2 hours without using water\n4. Check the meter again\n5. If the reading changed, you have a leak."
+  },
+  {
+    "id": "faq_change_name",
+    "category": "abonnement",
+    "titre": "Comment changer le nom sur mon abonnement ?",
+    "keywords": ["changement", "nom", "abonnement", "transfert", "propriétaire", "تغيير", "اسم", "اشتراك", "نقل", "ملكية"],
+    "contenu_fr": "Pour transférer l'abonnement à un nouveau propriétaire :\n1. Le nouveau titulaire doit se présenter à l'agence SONEDE avec :\n   • Sa CIN (original + copie)\n   • Le titre de propriété ou contrat de location à son nom\n   • La dernière facture réglée de l'ancien abonné\n2. L'ancien abonné doit être à jour de ses paiements\n3. Un acte de cession ou de vente est parfois demandé\n4. Le transfert est effectué sous 5 à 10 jours ouvrables.",
+    "contenu_ar": "لنقل الاشتراك لمالك جديد:\n1. يتوجه الحريف الجديد إلى وكالة الصوندة ومعه:\n   • بطاقة التعريف (أصل + نسخة)\n   • عقد الملكية أو الكراء باسمه\n   • آخر فاتورة مخلصة للحريف القديم\n2. يجب أن يكون الحريف القديم خالصا كل مستحقاته\n3. قد يُطلب عقد بيع أو تنازل\n4. يتم النقل في 5 إلى 10 أيام عمل.",
+    "contenu_en": "To transfer the subscription to a new owner:\n1. The new holder must visit the SONEDE agency with their ID, property title, and the last paid bill\n2. The previous subscriber must be up to date on payments\n3. Transfer is completed within 5-10 business days."
+  },
+  {
+    "id": "faq_stop_subscription",
+    "category": "abonnement",
+    "titre": "Comment résilier mon abonnement ?",
+    "keywords": ["résilier", "résiliation", "arrêter", "fermer", "إلغاء", "فسخ", "إيقاف", "غلق"],
+    "contenu_fr": "Pour résilier votre abonnement SONEDE :\n1. Rendez-vous à votre agence locale avec votre CIN et la dernière facture\n2. Réglez tous les impayés éventuels\n3. Demandez la fermeture du branchement\n4. Un agent se déplacera pour relever le compteur et fermer l'arrivée d'eau\n5. La facture de clôture vous sera envoyée\n\nAttention : si vous vendez votre bien, il est recommandé de transférer l'abonnement au nouveau propriétaire plutôt que de le résilier.",
+    "contenu_ar": "لإلغاء اشتراككم في الصوندة:\n1. توجهوا إلى وكالتكم المحلية ببطاقة التعريف وآخر فاتورة\n2. خلصوا كل المبالغ المستحقة\n3. اطلبوا غلق الربط\n4. يتنقل عون لقراءة العداد وغلق الماء\n5. تُرسل لكم فاتورة الإغلاق.",
+    "contenu_en": "To cancel your SONEDE subscription:\n1. Visit your local agency with your ID and last bill\n2. Settle any outstanding payments\n3. Request connection closure\n4. An agent will read the meter and shut off water\n5. A final bill will be sent to you."
+  },
+  {
+    "id": "faq_water_cut_what_to_do",
+    "category": "coupure_non_signalee",
+    "titre": "Que faire quand l'eau est coupée ?",
+    "keywords": ["coupé", "pas d'eau", "faire", "مقطوع", "ما فماش", "ماء", "وش", "نعمل"],
+    "contenu_fr": "Si votre eau est coupée :\n1. Vérifiez d'abord que le robinet d'arrêt général de votre logement est bien ouvert\n2. Demandez à vos voisins s'ils ont le même problème (pour savoir si c'est local ou général)\n3. Consultez les annonces de coupure programmée sur l'application SONEDE\n4. Si aucune coupure n'est annoncée, signalez le problème via :\n   • Le numéro vert 80 100 319\n   • L'application mobile\n   • Ce chatbot (décrivez votre problème et je vous guiderai)\n5. En attendant, utilisez vos réserves d'eau stockée si disponibles.",
+    "contenu_ar": "إذا انقطع الماء:\n1. تأكدوا أولا أن الحنفية العامة لمسكنكم مفتوحة\n2. اسألوا جيرانكم إن عندهم نفس المشكلة\n3. تحققوا من إعلانات القطع المبرمج في التطبيق\n4. إذا ما كان قطع معلن، بلغوا عبر الرقم الأخضر أو التطبيق أو الشات بوت\n5. في الانتظار، استعملوا المخزون المتوفر عندكم.",
+    "contenu_en": "If your water is cut:\n1. Check that your main shut-off valve is open\n2. Ask neighbors if they have the same issue\n3. Check for planned cut announcements on the SONEDE app\n4. If no cut is announced, report via the toll-free number, app, or this chatbot\n5. Meanwhile, use any stored water reserves."
+  },
+  {
+    "id": "faq_chlore_taste",
+    "category": "qualite_eau",
+    "titre": "Pourquoi l'eau a un goût de chlore ?",
+    "keywords": ["chlore", "goût", "javel", "كلور", "طعم", "جافيل"],
+    "contenu_fr": "Le léger goût de chlore est normal : c'est le signe que l'eau a été correctement désinfectée. Le chlore est utilisé pour éliminer les bactéries et garantir la potabilité de l'eau jusqu'à votre robinet.\n\nPour atténuer le goût :\n• Remplissez une carafe et laissez-la ouverte au réfrigérateur 30 minutes (le chlore s'évapore)\n• L'eau froide contient généralement moins de chlore que l'eau tiède\n\nSi le goût est très prononcé ou accompagné d'une couleur ou odeur inhabituelle, signalez-le car cela peut indiquer un surdosage ponctuel.",
+    "contenu_ar": "طعم الكلور الخفيف عادي: هو علامة على أن الماء تم تعقيمه بشكل صحيح. يُستعمل الكلور للقضاء على البكتيريا وضمان صلاحية الماء للشرب.\n\nلتخفيف الطعم:\n• ضعوا الماء في إبريق مفتوح في الثلاجة لمدة 30 دقيقة\n• الماء البارد عادة ما يكون أقل طعم كلور.",
+    "contenu_en": "A slight chlorine taste is normal — it means the water has been properly disinfected. Chlorine eliminates bacteria to ensure water safety.\n\nTo reduce the taste: fill a pitcher and leave it uncovered in the fridge for 30 minutes (chlorine evaporates). If the taste is very strong or accompanied by unusual color/smell, report it."
+  },
+  {
+    "id": "faq_regions_coverage",
+    "category": "general",
+    "titre": "Quelles régions couvre la SONEDE ?",
+    "keywords": ["région", "gouvernorat", "couverture", "zone", "ولاية", "منطقة", "تغطية"],
+    "contenu_fr": "La SONEDE couvre les 24 gouvernorats de la Tunisie à travers ses directions régionales :\nTunis, Ariana, Ben Arous, Manouba, Nabeul, Zaghouan, Bizerte, Béja, Jendouba, Le Kef, Siliana, Sousse, Monastir, Mahdia, Kairouan, Kasserine, Sidi Bouzid, Sfax, Gafsa, Tozeur, Kébili, Gabès, Médenine, Tataouine.\n\nChaque gouvernorat dispose de plusieurs agences locales pour assurer la proximité avec les usagers.",
+    "contenu_ar": "تغطي الصوندة كل 24 ولاية في تونس عبر إداراتها الجهوية:\nتونس، أريانة، بن عروس، منوبة، نابل، زغوان، بنزرت، باجة، جندوبة، الكاف، سليانة، سوسة، المنستير، المهدية، القيروان، القصرين، سيدي بوزيد، صفاقس، قفصة، توزر، قبلي، قابس، مدنين، تطاوين.",
+    "contenu_en": "SONEDE covers all 24 governorates of Tunisia through its regional directorates: Tunis, Ariana, Ben Arous, Manouba, Nabeul, Zaghouan, Bizerte, Béja, Jendouba, Le Kef, Siliana, Sousse, Monastir, Mahdia, Kairouan, Kasserine, Sidi Bouzid, Sfax, Gafsa, Tozeur, Kébili, Gabès, Médenine, Tataouine."
+  }
+]

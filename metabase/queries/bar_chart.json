@@ -1,0 +1,22 @@
+[
+  {
+    "$group": {
+      "_id": {
+        "gouvernorat": "$gouvernorat",
+        "type": { "$ifNull": ["$categorie_label_fr", "$categorie"] }
+      },
+      "nb_reclamations": { "$sum": 1 }
+    }
+  },
+  {
+    "$project": {
+      "_id": 0,
+      "gouvernorat": "$_id.gouvernorat",
+      "type_reclamation": "$_id.type",
+      "nb_reclamations": 1
+    }
+  },
+  {
+    "$sort": { "nb_reclamations": -1 }
+  }
+]

@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SONEDE - Espace Technicien</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #070d17;
+      --card-bg: #0d1526;
+      --card-border: #1e293b;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --primary: #0284c7;
+      --primary-light: rgba(2, 132, 199, 0.15);
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --row-hover: rgba(30, 41, 59, 0.5);
+    }
+    [data-theme="light"] {
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --card-border: #e2e8f0;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --primary: #0284c7;
+      --primary-light: rgba(2, 132, 199, 0.08);
+      --row-hover: #f1f5f9;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 24px 28px;
+      transition: background 0.3s, color 0.3s;
+      min-height: 100vh;
+    }
+
+    /* ── Top Header & KPI Summary ── */
+    .dashboard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+    .header-title h2 {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.4px;
+    }
+    .header-title p {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .kpi-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .kpi-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--primary);
+    }
+    .kpi-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .kpi-info .val {
+      font-size: 22px;
+      font-weight: 800;
+      line-height: 1.1;
+    }
+    .kpi-info .lbl {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-top: 4px;
+    }
+
+    /* ── Two Column Layout (Interventions + Status Panel) ── */
+    .layout-grid {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 24px;
+      align-items: start;
+    }
+
+    /* ── Main Content Card (Interventions Table) ── */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
+    .card-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .card-title-row h3 {
+      font-size: 16px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .refresh-btn {
+      background: var(--primary-light);
+      border: 1px solid var(--card-border);
+      color: var(--primary);
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+    .refresh-btn:hover {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    /* Table Styles */
+    .table-container {
+      overflow-x: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 13px;
+    }
+    th {
+      padding: 12px 14px;
+      color: var(--text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid var(--card-border);
+    }
+    td {
+      padding: 14px;
+      border-bottom: 1px solid var(--card-border);
+      vertical-align: middle;
+    }
+    tr:hover td {
+      background: var(--row-hover);
+    }
+
+    /* Status & Priority Pills */
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .status-new { background: rgba(59, 130, 246, 0.12); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
+    .status-progress { background: rgba(245, 158, 11, 0.12); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+    .status-resolved { background: rgba(16, 185, 129, 0.12); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+
+    .status-select {
+      background: var(--bg);
+      color: var(--text);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: 600;
+      outline: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    /* ── Side Control Panel (Status & Profile) ── */
+    .side-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .status-toggle-box {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 22px;
+    }
+    .status-toggle-box h4 {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .avail-options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .avail-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      border-radius: 12px;
+      border: 1.5px solid var(--card-border);
+      background: transparent;
+      color: var(--text);
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+    .avail-btn:hover {
+      border-color: var(--primary);
+      transform: translateX(3px);
+    }
+    .avail-btn.active-dispo {
+      background: rgba(16, 185, 129, 0.12);
+      border-color: #10b981;
+      color: #34d399;
+      font-weight: 700;
+    }
+    .avail-btn.active-occupé {
+      background: rgba(245, 158, 11, 0.12);
+      border-color: #f59e0b;
+      color: #fbbf24;
+      font-weight: 700;
+    }
+    .avail-btn.active-conge {
+      background: rgba(239, 68, 68, 0.12);
+      border-color: #ef4444;
+      color: #f87171;
+      font-weight: 700;
+    }
+
+    /* Profile Info Box */
+    .profile-box {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 22px;
+    }
+    .profile-box h4 {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .profile-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--card-border);
+      font-size: 12.5px;
+    }
+    .profile-item:last-child { border-bottom: none; }
+    .profile-item .p-lbl { color: var(--text-muted); }
+    .profile-item .p-val { font-weight: 700; text-align: right; }
+
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--text-muted);
+    }
+    .empty-state .icon { font-size: 36px; margin-bottom: 8px; }
+
+    @media (max-width: 1024px) {
+      .layout-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top KPI Cards -->
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-icon" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">📋</div>
+      <div class="kpi-info">
+        <div class="val" id="kpiTotal">0</div>
+        <div class="lbl">Interventions Assignées</div>
+      </div>
+    </div>
+
+    <div class="kpi-card">
+      <div class="kpi-icon" style="background: rgba(245, 158, 11, 0.15); color: #f59e0b;">⏳</div>
+      <div class="kpi-info">
+        <div class="val" id="kpiProgress">0</div>
+        <div class="lbl">En cours de traitement</div>
+      </div>
+    </div>
+
+    <div class="kpi-card">
+      <div class="kpi-icon" style="background: rgba(16, 185, 129, 0.15); color: #10b981;">✅</div>
+      <div class="kpi-info">
+        <div class="val" id="kpiResolved">0</div>
+        <div class="lbl">Clôturées / Résolues</div>
+      </div>
+    </div>
+
+    <div class="kpi-card">
+      <div class="kpi-icon" style="background: rgba(139, 92, 246, 0.15); color: #8b5cf6;">📍</div>
+      <div class="kpi-info">
+        <div class="val" id="kpiRegion">-</div>
+        <div class="lbl">Gouvernorat d'affectation</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Layout Grid -->
+  <div class="layout-grid">
+    <!-- Main Interventions Table -->
+    <div class="card">
+      <div class="card-title-row">
+        <h3>📋 Liste de mes interventions</h3>
+        <button class="refresh-btn" onclick="loadComplaints()">
+          <span>🔄</span> Actualiser
+        </button>
+      </div>
+
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Réf</th>
+              <th>Date</th>
+              <th>Catégorie</th>
+              <th>Localisation</th>
+              <th>Statut</th>
+              <th>Changer Statut</th>
+            </tr>
+          </thead>
+          <tbody id="complaintsTableBody">
+            <tr>
+              <td colspan="6" class="empty-state">
+                <div class="icon">⏳</div>
+                <div>Chargement des interventions...</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Side Control Panel -->
+    <div class="side-panel">
+      <!-- Availability Control -->
+      <div class="status-toggle-box">
+        <h4>🚦 Disponibilité Opérationnelle</h4>
+        <div class="avail-options">
+          <button class="avail-btn" id="btnDispo" onclick="updateAvailability('Disponible')">
+            <span>🟢 Disponible</span>
+            <span id="checkDispo"></span>
+          </button>
+          <button class="avail-btn" id="btnOccupe" onclick="updateAvailability('Occupé')">
+            <span>🟡 Occupé / En mission</span>
+            <span id="checkOccupe"></span>
+          </button>
+          <button class="avail-btn" id="btnConge" onclick="updateAvailability('En congé')">
+            <span>🔴 En congé</span>
+            <span id="checkConge"></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Tech Profile Information -->
+      <div class="profile-box">
+        <h4>👤 Profil & Affectation</h4>
+        <div class="profile-item">
+          <span class="p-lbl">Nom complet</span>
+          <span class="p-val" id="profName">-</span>
+        </div>
+        <div class="profile-item">
+          <span class="p-lbl">Email</span>
+          <span class="p-val" id="profEmail">-</span>
+        </div>
+        <div class="profile-item">
+          <span class="p-lbl">Téléphone</span>
+          <span class="p-val" id="profPhone">-</span>
+        </div>
+        <div class="profile-item">
+          <span class="p-lbl">Gouvernorat</span>
+          <span class="p-val" id="profGov">-</span>
+        </div>
+        <div class="profile-item">
+          <span class="p-lbl">Délégation</span>
+          <span class="p-val" id="profDel">-</span>
+        </div>
+        <div class="profile-item">
+          <span class="p-lbl">Statut actuel</span>
+          <span class="p-val" id="profStatus" style="color:#10b981;">Disponible</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Sync Theme from Parent
+    function syncTheme() {
+      const saved = localStorage.getItem('sonede_theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', saved);
+    }
+    syncTheme();
+    window.addEventListener('storage', syncTheme);
+
+    let currentUser = null;
+
+    // Load User Session
+    (function initSession() {
+      const s = localStorage.getItem('sonede_session') || localStorage.getItem('sonede_tech_session');
+      if (s) {
+        try {
+          currentUser = JSON.parse(s);
+          renderUserProfile();
+          loadAvailability();
+          loadComplaints();
+        } catch(e) {}
+      }
+    })();
+
+    function renderUserProfile() {
+      if (!currentUser) return;
+      document.getElementById('profName').textContent = currentUser.fullName || 'Technicien';
+      document.getElementById('profEmail').textContent = currentUser.email || '-';
+      document.getElementById('profPhone').textContent = currentUser.phone || '+216 -- --- ---';
+      document.getElementById('profGov').textContent = currentUser.governorate || '-';
+      document.getElementById('profDel').textContent = currentUser.delegation || '-';
+      document.getElementById('kpiRegion').textContent = currentUser.governorate || 'TUNISIE';
+    }
+
+    function loadAvailability() {
+      if (!currentUser?.email) return;
+      fetch(`/technicians/availability?email=${encodeURIComponent(currentUser.email)}`)
+        .then(r => r.json())
+        .then(data => {
+          if (data.status === 'ok') {
+            highlightAvailButton(data.availability);
+          }
+        })
+        .catch(() => {});
+    }
+
+    function highlightAvailButton(status) {
+      document.getElementById('btnDispo').className = 'avail-btn ' + (status === 'Disponible' ? 'active-dispo' : '');
+      document.getElementById('btnOccupe').className = 'avail-btn ' + (status === 'Occupé' ? 'active-occupé' : '');
+      document.getElementById('btnConge').className = 'avail-btn ' + (status === 'En congé' ? 'active-conge' : '');
+
+      document.getElementById('profStatus').textContent = status;
+      if (status === 'Disponible') document.getElementById('profStatus').style.color = '#10b981';
+      else if (status === 'Occupé') document.getElementById('profStatus').style.color = '#f59e0b';
+      else document.getElementById('profStatus').style.color = '#ef4444';
+    }
+
+    function updateAvailability(status) {
+      if (!currentUser?.email) return;
+      highlightAvailButton(status);
+
+      fetch('/technicians/availability', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: currentUser.email, availability: status })
+      })
+      .then(r => r.json())
+      .catch(() => {});
+    }
+
+    function loadComplaints() {
+      if (!currentUser?.email) return;
+
+      const tbody = document.getElementById('complaintsTableBody');
+      tbody.innerHTML = '<tr><td colspan="6" class="empty-state"><div class="icon">⏳</div><div>Chargement...</div></td></tr>';
+
+      fetch(`/complaints?limit=200&technicien_email=${encodeURIComponent(currentUser.email)}`)
+        .then(r => r.json())
+        .then(data => {
+          const list = Array.isArray(data) ? data : (data.results || data.complaints || []);
+          renderComplaints(list);
+        })
+        .catch(() => {
+          tbody.innerHTML = '<tr><td colspan="6" class="empty-state"><div class="icon">⚠️</div><div>Erreur de chargement des réclamations</div></td></tr>';
+        });
+    }
+
+    function renderComplaints(list) {
+      const tbody = document.getElementById('complaintsTableBody');
+      
+      let inProgress = 0;
+      let resolved = 0;
+
+      if (!list || list.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="6" class="empty-state">
+              <div class="icon">🎉</div>
+              <div style="font-weight: 700; margin-bottom: 4px;">Aucune intervention assignée</div>
+              <div style="font-size: 12px;">Toutes les réclamations de votre secteur sont traitées !</div>
+            </td>
+          </tr>`;
+        document.getElementById('kpiTotal').textContent = '0';
+        document.getElementById('kpiProgress').textContent = '0';
+        document.getElementById('kpiResolved').textContent = '0';
+        return;
+      }
+
+      list.forEach(c => {
+        const s = (c.statut || c.status || 'recue').toLowerCase();
+        if (s === 'resolue' || s === 'resolu' || s.includes('resolu') || s.includes('résolu')) resolved++;
+        else inProgress++;
+      });
+
+      document.getElementById('kpiTotal').textContent = list.length;
+      document.getElementById('kpiProgress').textContent = inProgress;
+      document.getElementById('kpiResolved').textContent = resolved;
+
+      tbody.innerHTML = list.map(c => {
+        const id = c.id_plainte || c.id || c._id || '';
+        const idShort = id.toString().slice(-8).toUpperCase();
+        const dateStr = c.date_signalement ? new Date(c.date_signalement).toLocaleDateString('fr-FR') : 'Récent';
+        const cat = c.categorie || c.category || 'Fuite d\'eau';
+        const loc = `${c.gouvernorat || ''} — ${c.delegation || c.adresse_texte || 'Centre'}`;
+        const currentStatus = (c.statut || c.status || 'recue').toLowerCase();
+
+        let badgeClass = 'status-new';
+        let badgeLabel = '📥 Reçue';
+        if (currentStatus === 'assignee') { badgeClass = 'status-progress'; badgeLabel = '👤 Assignée'; }
+        else if (currentStatus === 'eninspection') { badgeClass = 'status-progress'; badgeLabel = '🔍 En inspection'; }
+        else if (currentStatus === 'enreparation' || currentStatus === 'en_cours') { badgeClass = 'status-progress'; badgeLabel = '🔧 Réparation'; }
+        else if (currentStatus === 'resolue' || currentStatus === 'resolu') { badgeClass = 'status-resolved'; badgeLabel = '✅ Résolue'; }
+
+        const isRecue = currentStatus === 'recue' || currentStatus === 'nouveau';
+        const isAssignee = currentStatus === 'assignee';
+        const isInspection = currentStatus === 'eninspection';
+        const isReparation = currentStatus === 'enreparation' || currentStatus === 'en_cours';
+        const isResolue = currentStatus === 'resolue' || currentStatus === 'resolu';
+
+        return `
+          <tr>
+            <td style="font-weight: 700; color: var(--primary);">#${idShort}</td>
+            <td style="color: var(--text-muted);">${dateStr}</td>
+            <td style="font-weight: 600;">${cat.replace(/_/g, ' ').toUpperCase()}</td>
+            <td>📍 ${loc}</td>
+            <td><span class="status-badge ${badgeClass}">${badgeLabel}</span></td>
+            <td>
+              <select class="status-select" onchange="changeStatus('${id}', this.value)">
+                <option value="recue" ${isRecue ? 'selected' : ''}>📥 Reçue</option>
+                <option value="assignee" ${isAssignee ? 'selected' : ''}>👤 Assignée</option>
+                <option value="enInspection" ${isInspection ? 'selected' : ''}>🔍 En inspection</option>
+                <option value="enReparation" ${isReparation ? 'selected' : ''}>🔧 Réparation</option>
+                <option value="resolue" ${isResolue ? 'selected' : ''}>✅ Résolue</option>
+              </select>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    async function changeStatus(id, newStatus) {
+      if (!id) return;
+      try {
+        const res = await fetch('/complaints/status', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: id, status: newStatus })
+        });
+        const data = await res.json();
+        if (data.status === 'ok' || data.status === 'updated') {
+          loadComplaints();
+        } else {
+          alert(data.error || 'Erreur lors de la mise à jour');
+        }
+      } catch(e) {
+        loadComplaints();
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+[
+  {
+    "$project": {
+      "_id": 0,
+      "id_plainte": 1,
+      "date_signalement": 1,
+      "gouvernorat": 1,
+      "delegation": 1,
+      "categorie": { "$ifNull": ["$categorie_label_fr", "$categorie"] },
+      "statut": 1,
+      "urgence": 1,
+      "est_critique": {
+        "$cond": [{ "$in": ["$urgence", ["critique", "haute"]] }, "🔴 Critique", "🟢 Normal"]
+      },
+      "source": 1,
+      "texte_plainte": 1
+    }
+  },
+  { "$sort": { "date_signalement": -1 } },
+  { "$limit": 500 }
+]

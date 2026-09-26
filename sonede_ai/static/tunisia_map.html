@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>SONEDE - Carte des Réclamations par Région (Tunisie)</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <style>
+    body, html { margin: 0; padding: 0; height: 100%; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: transparent; overflow: hidden; }
+    #map { width: 100%; height: 100vh; background: #0f172a; }
+    .legend {
+      position: absolute; bottom: 20px; right: 20px; z-index: 1000;
+      background: #1e293b; padding: 12px 16px; border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4); font-size: 13px; line-height: 1.6;
+      color: #e2e8f0; border: 1px solid #334155;
+    }
+    .legend-title { font-weight: bold; margin-bottom: 6px; color: #f8fafc; }
+    .legend-item { display: flex; align-items: center; gap: 8px; }
+    .color-box { width: 14px; height: 14px; border-radius: 50%; display: inline-block; }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <div class="legend">
+    <div class="legend-title">Niveau de Criticité Régionale</div>
+    <div class="legend-item"><span class="color-box" style="background:#ef4444;"></span> 🔴 Critique (&ge; 5 cas graves)</div>
+    <div class="legend-item"><span class="color-box" style="background:#f97316;"></span> 🟠 Élevé (3 - 4 cas graves)</div>
+    <div class="legend-item"><span class="color-box" style="background:#eab308;"></span> 🟡 Modéré (1 - 2 cas)</div>
+    <div class="legend-item"><span class="color-box" style="background:#10b981;"></span> 🟢 Faible (0 cas)</div>
+  </div>
+
+  <script>
+    // Initialize map focused on Tunisia
+    const map = L.map('map').setView([34.0, 9.5], 6.8);
+
+    // Premium Dark tile layer (Esri Dark Gray)
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+      attribution: '&copy; SONEDE Smart Platform | &copy; Esri & OpenStreetMap',
+      maxZoom: 16
+    }).addTo(map);
+
+    const coords = {
+      "Tunis": [36.8065, 10.1815],
+      "Sfax": [34.7406, 10.7603],
+      "Sousse": [35.8256, 10.6369],
+      "Gabès": [33.8815, 10.0982],
+      "Bizerte": [37.2744, 9.8739],
+      "Nabeul": [36.4513, 10.7357],
+      "Kairouan": [35.6781, 10.0963],
+      "Kasserine": [35.1676, 8.8365],
+      "Gafsa": [34.425, 8.7842],
+      "Monastir": [35.7643, 10.8113],
+      "Médenine": [33.3399, 10.5055],
+      "Béja": [36.7256, 9.1817],
+      "Jendouba": [36.5011, 8.7802],
+      "Le Kef": [36.1749, 8.7049],
+      "Mahdia": [35.5047, 11.0622],
+      "Sidi Bouzid": [35.0354, 9.4839],
+      "Tozeur": [33.9197, 8.1339],
+      "Siliana": [36.0844, 9.3708],
+      "Zaghouan": [36.4029, 10.1429],
+      "Tataouine": [32.9297, 10.4509],
+      "Kébili": [33.7072, 8.9715],
+      "Ben Arous": [36.7533, 10.2282],
+      "Ariana": [36.8625, 10.1956],
+      "Manouba": [36.8101, 10.0863]
+    };
+
+    // Default sample data (fallback)
+    const defaultData = [
+      { gouvernorat: 'Tunis', lat: 36.8065, lng: 10.1815, total: 42, critiques: 12, res: '65%' },
+      { gouvernorat: 'Sfax', lat: 34.7406, lng: 10.7603, total: 58, critiques: 18, res: '52%' },
+      { gouvernorat: 'Sousse', lat: 35.8256, lng: 10.6369, total: 34, critiques: 6, res: '70%' },
+      { gouvernorat: 'Kairouan', lat: 35.6781, lng: 10.0963, total: 29, critiques: 11, res: '48%' },
+      { gouvernorat: 'Gabès', lat: 33.8815, lng: 10.0982, total: 25, critiques: 9, res: '55%' },
+      { gouvernorat: 'Gafsa', lat: 34.4250, lng: 8.7842, total: 31, critiques: 14, res: '40%' }
+    ];
+
+    function getColor(critiques) {
+      if (critiques >= 5) return '#ef4444'; // Rouge
+      if (critiques >= 3) return '#f97316'; // Orange
+      if (critiques >= 1) return '#eab308'; // Jaune
+      return '#10b981';                      // Vert
+    }
+
+    function renderMap(dataset) {
+      // Clear existing markers
+      map.eachLayer((layer) => {
+        if (layer instanceof L.CircleMarker) {
+          map.removeLayer(layer);
+        }
+      });
+
+      dataset.forEach(row => {
+        if (!row.lat || !row.lng) return;
+
+        const radius = Math.max(10, Math.min(row.total * 2 + 8, 30));
+        const color = getColor(row.critiques);
+
+        const circle = L.circleMarker([row.lat, row.lng], {
+          radius: radius,
+          fillColor: color,
+          color: '#ffffff',
+          weight: 1.5,
+          opacity: 0.9,
+          fillOpacity: 0.75
+        }).addTo(map);
+
+        circle.bindPopup(`
+          <div style="font-family: sans-serif; padding: 4px; color: #f8fafc;">
+            <h3 style="margin: 0 0 6px 0; color: #ffffff; border-bottom: 2px solid ${color}; padding-bottom: 4px;">
+              📍 ${row.gouvernorat}
+            </h3>
+            <p style="margin: 3px 0; font-size: 13px;"><b>Total réclamations:</b> ${row.total}</p>
+            <p style="margin: 3px 0; font-size: 13px; color: ${color}; font-weight: bold;">
+              <b>Réclamations critiques:</b> ${row.critiques}
+            </p>
+            <p style="margin: 3px 0; font-size: 13px;"><b>Taux de résolution:</b> ${row.res}</p>
+          </div>
+        `, { className: 'dark-popup' });
+      });
+    }
+
+    // Add custom CSS to style the Leaflet popups to match dark mode
+    const style = document.createElement('style');
+    style.innerHTML = `
+      .leaflet-popup-content-wrapper, .leaflet-popup-tip {
+        background: #1e293b !important;
+        color: #e2e8f0 !important;
+        border: 1px solid #475569;
+      }
+    `;
+    document.head.appendChild(style);
+
+    // Fetch live data from Flask backend
+    fetch('/complaints?limit=1000')
+      .then(response => response.json())
+      .then(data => {
+        const complaints = data.results || [];
+        const groups = {};
+        
+        Object.keys(coords).forEach(gov => {
+          groups[gov] = { gouvernorat: gov, total: 0, critiques: 0, resolved: 0 };
+        });
+
+        complaints.forEach(c => {
+          const gov = c.gouvernorat;
+          // Filter out null, empty, "Autre", "autre", etc.
+          if (gov && gov !== "Autre" && gov !== "autre" && gov.trim() !== "" && groups[gov]) {
+            groups[gov].total += 1;
+            if (['critique', 'haute'].includes(c.urgence)) {
+              groups[gov].critiques += 1;
+            }
+            if (c.statut === 'resolu') {
+              groups[gov].resolved += 1;
+            }
+          }
+        });
+
+        const dataset = Object.values(groups).map(g => {
+          const coord = coords[g.gouvernorat];
+          const resPct = g.total > 0 ? Math.round((g.resolved / g.total) * 100) : 0;
+          return {
+            gouvernorat: g.gouvernorat,
+            lat: coord[0],
+            lng: coord[1],
+            total: g.total,
+            critiques: g.critiques,
+            res: resPct + '%'
+          };
+        }).filter(g => g.total > 0);
+
+        if (dataset.length === 0) {
+          renderMap(defaultData);
+        } else {
+          renderMap(dataset);
+        }
+      })
+      .catch(err => {
+        console.error("Erreur lors de la récupération des données live:", err);
+        renderMap(defaultData);
+      });
+  </script>
+</body>
+</html>

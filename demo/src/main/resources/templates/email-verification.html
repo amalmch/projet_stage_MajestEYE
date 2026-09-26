@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vérification de l'adresse e-mail</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #0d47a1 0%, #1976d2 100%);
+            padding: 30px;
+            text-align: center;
+            color: white;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 40px 30px;
+            text-align: center;
+        }
+        .content p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            color: #555;
+        }
+        .otp-box {
+            display: inline-block;
+            background-color: #f0f4f8;
+            border: 2px dashed #1976d2;
+            padding: 15px 30px;
+            font-size: 32px;
+            font-weight: bold;
+            color: #1976d2;
+            letter-spacing: 5px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .footer {
+            background-color: #f9fafb;
+            padding: 20px;
+            text-align: center;
+            font-size: 14px;
+            color: #999;
+            border-top: 1px solid #eeeeee;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Sonede AI</h1>
+        </div>
+        <div class="content">
+            <h2>Bienvenue, <span th:text="${name}">Utilisateur</span> !</h2>
+            <p>Merci de vous être inscrit sur l'application Sonede AI. Pour compléter votre inscription et activer votre compte, veuillez utiliser le code de vérification suivant :</p>
+            
+            <div class="otp-box" th:text="${code}">123456</div>
+            
+            <p>Ce code est valide pendant 15 minutes. Ne le partagez avec personne.</p>
+        </div>
+        <div class="footer">
+            <p>Si vous n'avez pas créé de compte Sonede AI, veuillez ignorer cet e-mail.</p>
+            <p>&copy; 2026 Sonede AI. Tous droits réservés.</p>
+        </div>
+    </div>
+</body>
+</html>

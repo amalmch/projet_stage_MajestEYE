@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SONEDE - Gestion des Assignations</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    :root {
+      --bg: #070d17;
+      --card-bg: #0d1526;
+      --card-border: #1e293b;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --primary: #0284c7;
+      --primary-light: rgba(2, 132, 199, 0.15);
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --item-bg: #080e1a;
+      --row-hover: rgba(30, 41, 59, 0.5);
+    }
+    [data-theme="light"] {
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --card-border: #e2e8f0;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --primary: #0284c7;
+      --primary-light: rgba(2, 132, 199, 0.08);
+      --item-bg: #f8fafc;
+      --row-hover: #f1f5f9;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 24px 28px;
+      transition: background 0.3s, color 0.3s;
+      min-height: 100vh;
+    }
+
+    /* ── Header ── */
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+    .section-title h2 {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.4px;
+    }
+    .section-title p {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* Filter Controls */
+    .filter-bar {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .filter-select {
+      background: var(--card-bg);
+      color: var(--text);
+      border: 1px solid var(--card-border);
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      outline: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    /* ── Main Layout (Donut Chart + Complaints Cards) ── */
+    .layout-grid {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 22px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
+    .card-title {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Complaints List */
+    .complaints-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-height: calc(100vh - 180px);
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+
+    .complaint-card {
+      background: var(--item-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 16px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .complaint-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--primary);
+    }
+
+    .c-info h4 {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .c-meta {
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .c-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .status-select {
+      background: var(--card-bg);
+      color: var(--text);
+      border: 1.5px solid var(--card-border);
+      border-radius: 10px;
+      padding: 8px 12px;
+      font-size: 12.5px;
+      font-weight: 700;
+      outline: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .tech-select {
+      background: var(--card-bg);
+      color: var(--text);
+      border: 1.5px solid var(--card-border);
+      border-radius: 10px;
+      padding: 8px 12px;
+      font-size: 12.5px;
+      font-weight: 600;
+      outline: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    /* Status Badges */
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .status-new { background: rgba(59, 130, 246, 0.12); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
+    .status-progress { background: rgba(245, 158, 11, 0.12); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+    .status-resolved { background: rgba(16, 185, 129, 0.12); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+
+    .chart-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 240px;
+      position: relative;
+    }
+
+    .stat-mini-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .stat-mini-card {
+      background: var(--item-bg);
+      border: 1px solid var(--card-border);
+      padding: 10px 12px;
+      border-radius: 10px;
+      text-align: center;
+    }
+    .stat-mini-card .val { font-size: 18px; font-weight: 800; }
+    .stat-mini-card .lbl { font-size: 11px; color: var(--text-muted); font-weight: 600; }
+
+    @media (max-width: 1024px) {
+      .layout-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Section Header -->
+  <div class="section-header">
+    <div class="section-title">
+      <h2>🔧 Suivi des Statuts & Assignations</h2>
+      <p>Supervisez et affectez les réclamations aux techniciens compétents</p>
+    </div>
+
+    <div class="filter-bar">
+      <select id="filterStatus" class="filter-select" onchange="renderFilteredComplaints()">
+        <option value="ALL">Tous les statuts</option>
+        <option value="recue">📥 Reçue</option>
+        <option value="assignee">👤 Assignée</option>
+        <option value="enInspection">🔍 En inspection</option>
+        <option value="enReparation">🔧 Réparation en cours</option>
+        <option value="resolue">✅ Résolue</option>
+      </select>
+
+      <select id="filterGov" class="filter-select" onchange="renderFilteredComplaints()">
+        <option value="ALL">Tous les gouvernorats</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Main Layout -->
+  <div class="layout-grid">
+    <!-- Left Column: Status Donut Chart & Counters -->
+    <div class="card">
+      <div class="card-title">📊 Synthèse Globale</div>
+      <div class="chart-box">
+        <canvas id="statusChart"></canvas>
+      </div>
+
+      <div class="stat-mini-grid">
+        <div class="stat-mini-card">
+          <div class="val" id="cntTotal" style="color:#0284c7;">0</div>
+          <div class="lbl">Total</div>
+        </div>
+        <div class="stat-mini-card">
+          <div class="val" id="cntNew" style="color:#60a5fa;">0</div>
+          <div class="lbl">Reçues</div>
+        </div>
+        <div class="stat-mini-card">
+          <div class="val" id="cntProgress" style="color:#fbbf24;">0</div>
+          <div class="lbl">En cours</div>
+        </div>
+        <div class="stat-mini-card">
+          <div class="val" id="cntResolved" style="color:#34d399;">0</div>
+          <div class="lbl">Résolues</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: Interactive List -->
+    <div class="card">
+      <div class="card-title">📋 Réclamations & Assignations en Direct</div>
+      <div class="complaints-list" id="complaintsList">
+        <div style="text-align:center; padding: 30px; color: var(--text-muted);">
+          Chargement des réclamations...
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Theme sync
+    function syncTheme() {
+      const saved = localStorage.getItem('sonede_theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', saved);
+    }
+    syncTheme();
+    window.addEventListener('storage', syncTheme);
+
+    let allComplaints = [];
+    let allTechs = [];
+    let chartInstance = null;
+
+    async function init() {
+      await loadTechs();
+      await loadComplaints();
+    }
+
+    async function loadTechs() {
+      try {
+        const r = await fetch('/technicians');
+        const data = await r.json();
+        allTechs = Array.isArray(data) ? data : (data.results || data.technicians || []);
+      } catch (e) {
+        allTechs = [];
+      }
+    }
+
+    async function loadComplaints() {
+      try {
+        const r = await fetch('/complaints?limit=250');
+        const data = await r.json();
+        allComplaints = Array.isArray(data) ? data : (data.results || data.complaints || []);
+        populateGovFilter();
+        renderFilteredComplaints();
+      } catch (e) {
+        document.getElementById('complaintsList').innerHTML = '<div style="text-align:center; padding:20px; color:#f87171;">Erreur de chargement des réclamations.</div>';
+      }
+    }
+
+    function populateGovFilter() {
+      const govSelect = document.getElementById('filterGov');
+      const currentSelected = govSelect.value;
+      const govs = new Set();
+      allComplaints.forEach(c => {
+        const g = c.gouvernorat || c.governorate;
+        if (g) govs.add(g.trim());
+      });
+
+      govSelect.innerHTML = '<option value="ALL">Tous les gouvernorats</option>';
+      Array.from(govs).sort().forEach(g => {
+        govSelect.innerHTML += `<option value="${g}" ${g === currentSelected ? 'selected' : ''}>${g}</option>`;
+      });
+    }
+
+    function normalizeStatus(statut) {
+      const s = (statut || 'recue').toLowerCase().trim();
+      if (s === 'recue' || s === 'nouveau' || s === 'nouveau_signalement') return 'recue';
+      if (s === 'assignee' || s === 'assigné') return 'assignee';
+      if (s === 'eninspection' || s === 'inspection') return 'enInspection';
+      if (s === 'enreparation' || s === 'en_cours' || s === 'reparation') return 'enReparation';
+      if (s === 'resolue' || s === 'resolu' || s === 'cloture') return 'resolue';
+      return s;
+    }
+
+    function renderFilteredComplaints() {
+      const statusFilter = document.getElementById('filterStatus').value;
+      const govFilter = document.getElementById('filterGov').value;
+
+      let filtered = allComplaints.filter(c => {
+        const norm = normalizeStatus(c.statut || c.status);
+        const compGov = (c.gouvernorat || c.governorate || '').trim();
+
+        const matchStatus = statusFilter === 'ALL' || norm.toLowerCase() === statusFilter.toLowerCase();
+        const matchGov = govFilter === 'ALL' || compGov.toLowerCase() === govFilter.toLowerCase();
+        return matchStatus && matchGov;
+      });
+
+      updateStatsAndChart(filtered);
+      renderList(filtered);
+    }
+
+    function updateStatsAndChart(currentList) {
+      let n = 0, p = 0, r = 0;
+      const listToCount = allComplaints; // Count overall dataset for dashboard metrics
+      listToCount.forEach(c => {
+        const s = normalizeStatus(c.statut || c.status);
+        if (s === 'resolue') r++;
+        else if (s === 'assignee' || s === 'enInspection' || s === 'enReparation') p++;
+        else n++;
+      });
+
+      document.getElementById('cntTotal').textContent = listToCount.length;
+      document.getElementById('cntNew').textContent = n;
+      document.getElementById('cntProgress').textContent = p;
+      document.getElementById('cntResolved').textContent = r;
+
+      const ctx = document.getElementById('statusChart').getContext('2d');
+      if (chartInstance) chartInstance.destroy();
+
+      chartInstance = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: ['Reçues', 'En cours d\'intervention', 'Résolues'],
+          datasets: [{
+            data: [n, p, r],
+            backgroundColor: ['#60a5fa', '#fbbf24', '#34d399'],
+            borderWidth: 0
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false }
+          },
+          cutout: '72%'
+        }
+      });
+    }
+
+    function getStatusLabel(s) {
+      const map = {
+        'recue': '📥 Reçue',
+        'nouveau': '📥 Reçue',
+        'assignee': '👤 Assignée',
+        'en_cours': '🔧 En cours',
+        'eninspection': '🔍 En inspection',
+        'enreparation': '🔧 Réparation en cours',
+        'resolue': '✅ Résolue',
+        'resolu': '✅ Résolue'
+      };
+      return map[(s || '').toLowerCase()] || s;
+    }
+
+    function renderList(list) {
+      const container = document.getElementById('complaintsList');
+
+      if (!list || list.length === 0) {
+        container.innerHTML = '<div style="text-align:center; padding: 40px 20px; color: var(--text-muted);">Aucune réclamation trouvée avec ces critères.</div>';
+        return;
+      }
+
+      container.innerHTML = list.map(c => {
+        const id = c.id_plainte || c.id || c._id || '';
+        const idShort = id.toString().slice(-8).toUpperCase();
+        const dateStr = c.date_signalement ? new Date(c.date_signalement).toLocaleDateString('fr-FR') : 'Récent';
+        const cat = c.categorie || c.category || 'Fuite d\'eau';
+        const loc = `${c.gouvernorat || ''} — ${c.delegation || c.adresse_texte || ''}`;
+        const currentStatus = (c.statut || c.status || 'recue').toLowerCase();
+        const currentTech = c.technicien_email || '';
+        const compGov = (c.gouvernorat || '').trim().toLowerCase();
+
+        // Sort techs: matching governorate first, then by availability
+        const sameGovTechs = allTechs.filter(t => (t.governorate || '').trim().toLowerCase() === compGov);
+        const otherGovTechs = allTechs.filter(t => (t.governorate || '').trim().toLowerCase() !== compGov);
+
+        const formatTechOption = (t) => {
+          const dispo = t.disponibilite || 'Disponible';
+          let icon = '🟢';
+          if (dispo === 'Occupé') icon = '🟡';
+          else if (dispo === 'En congé') icon = '🔴';
+          const isSelected = t.email === currentTech ? 'selected' : '';
+          return `<option value="${t.email}" ${isSelected}>${icon} ${t.fullName || t.email} (${t.governorate || 'Général'} - ${dispo})</option>`;
+        };
+
+        let techOptionsHtml = '<option value="">-- Aucun technicien assigné --</option>';
+        if (sameGovTechs.length > 0) {
+          techOptionsHtml += `<optgroup label="📍 Techniciens de la région (${c.gouvernorat})">`;
+          techOptionsHtml += sameGovTechs.map(formatTechOption).join('');
+          techOptionsHtml += `</optgroup>`;
+        }
+        if (otherGovTechs.length > 0) {
+          techOptionsHtml += `<optgroup label="🌐 Autres gouvernorats">`;
+          techOptionsHtml += otherGovTechs.map(formatTechOption).join('');
+          techOptionsHtml += `</optgroup>`;
+        }
+
+        const isRecue = currentStatus === 'recue' || currentStatus === 'nouveau';
+        const isAssignee = currentStatus === 'assignee';
+        const isInspection = currentStatus === 'eninspection';
+        const isReparation = currentStatus === 'enreparation' || currentStatus === 'en_cours';
+        const isResolue = currentStatus === 'resolue' || currentStatus === 'resolu';
+
+        return `
+          <div class="complaint-card">
+            <div class="c-info">
+              <h4>
+                <span style="color: var(--primary);">#${idShort}</span>
+                <span>${cat.replace(/_/g, ' ').toUpperCase()}</span>
+              </h4>
+              <div class="c-meta">
+                <span>📅 ${dateStr}</span>
+                <span>📍 ${loc}</span>
+                <span>👤 ${c.user_name || c.citoyen_name || c.user_id || 'Citoyen'}</span>
+                ${c.technicien_nom ? `<span style="color:#fbbf24;">👷 ${c.technicien_nom}</span>` : ''}
+              </div>
+            </div>
+
+            <div class="c-actions">
+              <!-- Technician Assignment Dropdown (by Governorate + Availability) -->
+              <select class="tech-select" onchange="assignTech('${id}', this.value)" title="Assigner un technicien selon disponibilité">
+                ${techOptionsHtml}
+              </select>
+
+              <!-- Status Dropdown coherent with Flutter App -->
+              <select class="status-select" onchange="updateStatus('${id}', this.value)" title="Changer le statut en direct">
+                <option value="recue" ${isRecue ? 'selected' : ''}>📥 Reçue</option>
+                <option value="assignee" ${isAssignee ? 'selected' : ''}>👤 Assignée</option>
+                <option value="enInspection" ${isInspection ? 'selected' : ''}>🔍 En inspection</option>
+                <option value="enReparation" ${isReparation ? 'selected' : ''}>🔧 Réparation</option>
+                <option value="resolue" ${isResolue ? 'selected' : ''}>✅ Résolue</option>
+              </select>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    async function updateStatus(id, status) {
+      try {
+        const res = await fetch('/complaints/status', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: id, status: status })
+        });
+        const data = await res.json();
+        if (data.status === 'ok' || data.status === 'updated') {
+          showToast('✅ Statut mis à jour et sauvegardé !');
+          await loadComplaints();
+        } else {
+          alert(data.error || 'Erreur lors de la mise à jour');
+        }
+      } catch(e) {
+        alert('Erreur de communication avec le serveur');
+      }
+    }
+
+    async function assignTech(id, techEmail) {
+      try {
+        const res = await fetch('/complaints/assign', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ complaint_id: id, technicien_email: techEmail })
+        });
+        const data = await res.json();
+        if (data.status === 'ok') {
+          showToast('✅ Technicien assigné et synchronisé !');
+          await loadComplaints();
+        } else {
+          alert(data.error || 'Erreur lors de l\'assignation');
+        }
+      } catch(e) {
+        alert('Erreur de communication avec le serveur');
+      }
+    }
+
+    function showToast(msg) {
+      let toast = document.getElementById('appToast');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'appToast';
+        toast.style.cssText = 'position:fixed;bottom:24px;right:24px;background:#0284c7;color:#fff;padding:12px 20px;border-radius:12px;font-weight:700;font-size:13px;z-index:9999;box-shadow:0 8px 25px rgba(0,0,0,0.3);transition:all 0.3s;';
+        document.body.appendChild(toast);
+      }
+      toast.textContent = msg;
+      toast.style.opacity = '1';
+      toast.style.transform = 'translateY(0)';
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(10px)';
+      }, 2500);
+    }
+
+    init();
+  </script>
+</body>
+</html>

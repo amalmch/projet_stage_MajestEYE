@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SONEDE Smart — Connexion</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #050a14;
+      --bg-card: rgba(15, 23, 42, 0.6);
+      --border: rgba(56, 189, 248, 0.12);
+      --text: #f1f5f9;
+      --text-2: #94a3b8;
+      --input-bg: rgba(15, 23, 42, 0.7);
+      --input-border: #1e293b;
+      --accent: #0284c7;
+      --accent-glow: rgba(2, 132, 199, 0.35);
+    }
+
+    [data-theme="light"] {
+      --bg: #f8fafc;
+      --bg-card: rgba(255, 255, 255, 0.85);
+      --border: rgba(2, 132, 199, 0.15);
+      --text: #0f172a;
+      --text-2: #64748b;
+      --input-bg: #ffffff;
+      --input-border: #e2e8f0;
+      --accent: #0284c7;
+      --accent-glow: rgba(2, 132, 199, 0.2);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      transition: background 0.4s, color 0.4s;
+      overflow: hidden;
+    }
+
+    /* ── Animated mesh gradient background ── */
+    .bg-mesh {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .bg-mesh .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: 0.35;
+      animation: orbFloat 20s ease-in-out infinite alternate;
+    }
+
+    .bg-mesh .orb-1 {
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, #0284c7 0%, transparent 70%);
+      top: -10%;
+      left: -10%;
+      animation-duration: 22s;
+    }
+
+    .bg-mesh .orb-2 {
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, #0ea5e9 0%, transparent 70%);
+      bottom: -15%;
+      right: -5%;
+      animation-duration: 18s;
+      animation-delay: -5s;
+    }
+
+    .bg-mesh .orb-3 {
+      width: 350px;
+      height: 350px;
+      background: radial-gradient(circle, #38bdf8 0%, transparent 70%);
+      top: 40%;
+      left: 50%;
+      animation-duration: 25s;
+      animation-delay: -10s;
+    }
+
+    [data-theme="light"] .bg-mesh .orb {
+      opacity: 0.15;
+    }
+
+    @keyframes orbFloat {
+      0% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      33% {
+        transform: translate(40px, -30px) scale(1.08);
+      }
+
+      66% {
+        transform: translate(-20px, 20px) scale(0.95);
+      }
+
+      100% {
+        transform: translate(30px, -10px) scale(1.03);
+      }
+    }
+
+    /* ── Grid pattern overlay ── */
+    .bg-grid {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(56, 189, 248, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(56, 189, 248, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    [data-theme="light"] .bg-grid {
+      background-image:
+        linear-gradient(rgba(2, 132, 199, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(2, 132, 199, 0.05) 1px, transparent 1px);
+    }
+
+    /* ── Left brand panel ── */
+    .left-panel {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 60px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .brand-block {
+      max-width: 480px;
+    }
+
+    .logo-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 48px;
+    }
+
+    .logo-img {
+      height: 44px;
+      background: #ffffff;
+      padding: 5px 10px;
+      border-radius: 10px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+    }
+
+    .logo-text {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--text);
+    }
+
+    .logo-text span {
+      color: #0ea5e9;
+    }
+
+    .hero-title {
+      font-size: 42px;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -1px;
+      margin-bottom: 18px;
+    }
+
+    .hero-title .accent-word {
+      background: linear-gradient(135deg, #0ea5e9, #38bdf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 16px;
+      color: var(--text-2);
+      line-height: 1.6;
+      margin-bottom: 40px;
+      max-width: 420px;
+    }
+
+    /* Stat pills */
+    .stat-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .stat-pill {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--bg-card);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      padding: 12px 18px;
+      border-radius: 12px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .stat-pill:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px var(--accent-glow);
+    }
+
+    .stat-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: rgba(14, 165, 233, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+
+    .stat-value {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .stat-label {
+      font-size: 11px;
+      color: var(--text-2);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── Right login panel ── */
+    .right-panel {
+      flex: 0 0 520px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 48px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .theme-toggle {
+      position: absolute;
+      top: 32px;
+      right: 32px;
+      background: var(--bg-card);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      color: var(--text);
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--accent);
+      transform: scale(1.05);
+    }
+
+    .login-card {
+      width: 100%;
+      max-width: 400px;
+      background: var(--bg-card);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px 36px;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+    }
+
+    .card-header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .card-header h2 {
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 6px;
+      letter-spacing: -0.3px;
+    }
+
+    .card-header p {
+      font-size: 14px;
+      color: var(--text-2);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-2);
+      margin-bottom: 7px;
+    }
+
+    .input-wrapper {
+      position: relative;
+    }
+
+    .input-wrapper .input-icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 15px;
+      color: var(--text-2);
+      pointer-events: none;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 13px 16px 13px 44px;
+      background: var(--input-bg);
+      border: 1.5px solid var(--input-border);
+      border-radius: 12px;
+      color: var(--text);
+      font-size: 14px;
+      font-family: inherit;
+      outline: none;
+      transition: all 0.25s;
+    }
+
+    .form-group input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-glow);
+    }
+
+    .form-group input::placeholder {
+      color: var(--text-2);
+      opacity: 0.6;
+    }
+
+    .login-btn {
+      width: 100%;
+      background: linear-gradient(135deg, #0284c7, #0369a1);
+      color: #ffffff;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      margin-top: 6px;
+      transition: all 0.25s;
+      box-shadow: 0 6px 20px var(--accent-glow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .login-btn::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+      transform: translateX(-100%);
+      transition: transform 0.5s;
+    }
+
+    .login-btn:hover::after {
+      transform: translateX(100%);
+    }
+
+    .login-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px var(--accent-glow);
+    }
+
+    .login-btn:active {
+      transform: translateY(0);
+    }
+
+    .login-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .error-msg {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.25);
+      color: #f87171;
+      padding: 11px 16px;
+      border-radius: 10px;
+      font-size: 13px;
+      margin-bottom: 18px;
+      display: none;
+      font-weight: 500;
+    }
+
+    .login-footer {
+      margin-top: 32px;
+      text-align: center;
+      font-size: 11px;
+      color: var(--text-2);
+      line-height: 1.5;
+    }
+
+    /* ── Water drop divider line (creative subtle touch) ── */
+    .divider {
+      position: absolute;
+      left: 0;
+      top: 10%;
+      bottom: 10%;
+      width: 1px;
+      background: linear-gradient(180deg,
+          transparent 0%,
+          var(--border) 20%,
+          rgba(14, 165, 233, 0.3) 50%,
+          var(--border) 80%,
+          transparent 100%);
+    }
+
+    .divider::before {
+      content: '💧';
+      position: absolute;
+      left: -11px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 20px;
+      animation: dropPulse 3s ease-in-out infinite;
+    }
+
+    @keyframes dropPulse {
+
+      0%,
+      100% {
+        transform: translateY(-50%) scale(1);
+        opacity: 0.7;
+      }
+
+      50% {
+        transform: translateY(-50%) scale(1.2);
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 960px) {
+      body {
+        flex-direction: column;
+      }
+
+      .left-panel {
+        padding: 40px 28px;
+      }
+
+      .right-panel {
+        flex: unset;
+        padding: 28px;
+      }
+
+      .hero-title {
+        font-size: 28px;
+      }
+
+      .divider {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Animated mesh background -->
+  <div class="bg-mesh">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+  <div class="bg-grid"></div>
+
+  <!-- Left brand panel -->
+  <div class="left-panel">
+    <div class="brand-block">
+      <div class="logo-row">
+        <img src="/static/assets/sonede_logo.png" alt="SONEDE" class="logo-img">
+        <div class="logo-text">SONEDE <span>Smart</span></div>
+      </div>
+
+      <h1 class="hero-title">
+        Gestion <span class="accent-word">intelligente</span><br>
+        des ressources en eau
+      </h1>
+
+      <p class="hero-subtitle">
+        Plateforme de suivi des réclamations, d'analyse prédictive
+        et de coordination des interventions techniques à travers
+        les gouvernorats de la Tunisie.
+      </p>
+
+      <div class="stat-row">
+        <div class="stat-pill">
+          <div class="stat-icon">📊</div>
+          <div>
+            <div class="stat-value">24</div>
+            <div class="stat-label">Gouvernorats</div>
+          </div>
+        </div>
+        <div class="stat-pill">
+          <div class="stat-icon">⚡</div>
+          <div>
+            <div class="stat-value">Temps réel</div>
+            <div class="stat-label">Suivi & Analyse</div>
+          </div>
+        </div>
+        <div class="stat-pill">
+          <div class="stat-icon">🤖</div>
+          <div>
+            <div class="stat-value">IA & NLP</div>
+            <div class="stat-label">Classification</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right login panel -->
+  <div class="right-panel">
+    <div class="divider"></div>
+
+    <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn" title="Changer le thème">
+      <span id="themeIcon">🌙</span>
+    </button>
+
+    <div class="login-card">
+      <div class="card-header">
+        <h2>Connexion</h2>
+        <p>Accédez à votre espace professionnel</p>
+      </div>
+
+      <div id="errorMsg" class="error-msg"></div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <div class="input-wrapper">
+          <span class="input-icon">✉</span>
+          <input id="email" type="email" placeholder="admin@sonede.tn" autocomplete="email">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Mot de passe</label>
+        <div class="input-wrapper">
+          <span class="input-icon">🔒</span>
+          <input id="password" type="password" placeholder="Entrez votre mot de passe" autocomplete="current-password">
+        </div>
+      </div>
+
+      <button class="login-btn" id="loginBtn" onclick="doLogin()">
+        Se connecter →
+      </button>
+
+      <div class="login-footer">
+        Société Nationale d'Exploitation et de Distribution des Eaux<br>
+        © 2026 — Tous droits réservés
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Theme
+    function initTheme() {
+      const saved = localStorage.getItem('sonede_theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', saved);
+      document.getElementById('themeIcon').textContent = saved === 'dark' ? '🌙' : '☀️';
+    }
+    function toggleTheme() {
+      const cur = document.documentElement.getAttribute('data-theme') || 'dark';
+      const next = cur === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('sonede_theme', next);
+      document.getElementById('themeIcon').textContent = next === 'dark' ? '🌙' : '☀️';
+    }
+    initTheme();
+
+    function showError(msg) {
+      const el = document.getElementById('errorMsg');
+      el.textContent = msg; el.style.display = 'block';
+    }
+    function hideError() {
+      document.getElementById('errorMsg').style.display = 'none';
+    }
+
+    function redirectToPortal(user) {
+      if (user.role === 'ADMIN') {
+        localStorage.setItem('sonede_admin_session', JSON.stringify(user));
+        window.location.href = '/static/admin_portal.html';
+      } else if (user.role === 'TECHNICIEN') {
+        localStorage.setItem('sonede_tech_session', JSON.stringify(user));
+        window.location.href = '/static/tech_portal.html';
+      } else {
+        showError('Accès réservé aux administrateurs et techniciens');
+      }
+    }
+
+    // Auto-redirect if session exists
+    (function () {
+      const s = localStorage.getItem('sonede_session');
+      if (s) { try { const u = JSON.parse(s); if (u?.role) redirectToPortal(u); } catch (e) { } }
+    })();
+
+    function doLogin() {
+      hideError();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      const btn = document.getElementById('loginBtn');
+
+      if (!email || !password) {
+        showError('Veuillez remplir tous les champs');
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Connexion...';
+
+      fetch('/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      })
+        .then(r => r.json())
+        .then(data => {
+          btn.disabled = false;
+          btn.textContent = 'Se connecter →';
+          if (data.error) { showError(data.error); return; }
+          const user = data.user;
+          if (user.role !== 'ADMIN' && user.role !== 'TECHNICIEN') {
+            showError('Accès réservé aux administrateurs et techniciens');
+            return;
+          }
+          localStorage.setItem('sonede_session', JSON.stringify(user));
+          redirectToPortal(user);
+        })
+        .catch(() => {
+          btn.disabled = false;
+          btn.textContent = 'Se connecter →';
+          showError('Erreur de connexion au serveur');
+        });
+    }
+
+    document.getElementById('password').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+    document.getElementById('email').addEventListener('keydown', e => { if (e.key === 'Enter') document.getElementById('password').focus(); });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  metabase-postgres:
+    image: postgres:15-alpine
+    container_name: metabase_db
+    environment:
+      POSTGRES_DB: metabaseapp
+      POSTGRES_USER: metabase
+      POSTGRES_PASSWORD: metabase_secret_pass
+    volumes:
+      - metabase-pg-data:/var/lib/postgresql/data
+    ports:
+      - "5435:5432"
+    restart: always
+
+  metabase:
+    image: metabase/metabase:latest
+    container_name: sonede_metabase
+    depends_on:
+      - metabase-postgres
+    ports:
+      - "8085:3000"
+    environment:
+      MB_DB_TYPE: postgres
+      MB_DB_DBNAME: metabaseapp
+      MB_DB_PORT: 5432
+      MB_DB_USER: metabase
+      MB_DB_PASS: metabase_secret_pass
+      MB_DB_HOST: metabase-postgres
+      MB_SITE_URL: "http://localhost:8085"
+    volumes:
+      - metabase-data:/metabase-data
+    restart: always
+
+volumes:
+  metabase-pg-data:
+  metabase-data:

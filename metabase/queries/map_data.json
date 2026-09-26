@@ -1,0 +1,55 @@
+[
+  {
+    "$group": {
+      "_id": "$gouvernorat",
+      "lat": { "$avg": "$latitude" },
+      "lng": { "$avg": "$longitude" },
+      "total_reclamations": { "$sum": 1 },
+      "critiques": {
+        "$sum": {
+          "$cond": [{ "$in": ["$urgence", ["critique", "haute"]] }, 1, 0]
+        }
+      },
+      "resolus": {
+        "$sum": {
+          "$cond": [{ "$eq": ["$statut", "resolu"] }, 1, 0]
+        }
+      }
+    }
+  },
+  {
+    "$project": {
+      "_id": 0,
+      "gouvernorat": "$_id",
+      "lat": 1,
+      "lng": 1,
+      "total": "$total_reclamations",
+      "critiques": 1,
+      "taux_resolution": {
+        "$multiply": [
+          { "$divide": ["$resolus", "$total_reclamations"] },
+          100
+        ]
+      },
+      "niveau_risque": {
+        "$cond": [
+          { "$gte": ["$critiques", 10] },
+          "critique",
+          {
+            "$cond": [
+              { "$gte": ["$critiques", 5] },
+              "eleve",
+              {
+                "$cond": [
+                  { "$gte": ["$total_reclamations", 3] },
+                  "modere",
+                  "faible"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+]
